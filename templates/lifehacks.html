@@ -1,0 +1,73 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Лайфхаки и факты - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Back Button -->
+    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+    
+    <!-- Page Content -->
+    <div class="page-content">
+        <h1 class="page-title">Лайфхаки и факты</h1>
+        
+        <div class="page-text">
+            <p>Полезные советы и интересные факты для успешной подготовки к ЕГЭ и ОГЭ.</p>
+        </div>
+        
+        <h2 class="page-subtitle">Лайфхаки для подготовки:</h2>
+        <ul class="content-list">
+            <li><strong>Планируйте время</strong> - составьте расписание подготовки и следуйте ему. Выделяйте время на каждый предмет.</li>
+            <li><strong>Решайте пробные варианты</strong> - регулярное прохождение тестов помогает привыкнуть к формату экзамена.</li>
+            <li><strong>Повторяйте материал</strong> - используйте технику интервального повторения для лучшего запоминания.</li>
+            <li><strong>Делайте перерывы</strong> - не забывайте отдыхать. Оптимальный режим: 45 минут учебы, 15 минут отдыха.</li>
+            <li><strong>Записывайте ошибки</strong> - ведите дневник ошибок и регулярно его просматривайте.</li>
+            <li><strong>Объясняйте другим</strong> - попробуйте объяснить изученный материал другу или родственнику.</li>
+        </ul>
+        
+        <h2 class="page-subtitle">Интересные факты:</h2>
+        <ul class="content-list">
+            <li>ЕГЭ проводится в России с 2001 года, а с 2009 года стал обязательным для всех выпускников.</li>
+            <li>Средний балл ЕГЭ по русскому языку в 2023 году составил 68 баллов.</li>
+            <li>Самый популярный предмет по выбору на ЕГЭ - обществознание.</li>
+            <li>На выполнение экзаменационной работы по математике отводится 3 часа 55 минут (235 минут).</li>
+            <li>Максимальный балл по ЕГЭ - 100 баллов, но некоторые вузы могут давать дополнительные баллы.</li>
+            <li>ОГЭ сдают учащиеся 9 классов, а ЕГЭ - учащиеся 11 классов.</li>
+        </ul>
+        
+        <h2 class="page-subtitle">Советы на экзамене:</h2>
+        <ul class="content-list">
+            <li>Читайте задание внимательно до конца - не торопитесь с ответом.</li>
+            <li>Начинайте с легких заданий - это поможет настроиться и сэкономить время.</li>
+            <li>Следите за временем - распределите время на все части экзамена.</li>
+            <li>Не оставляйте вопросы без ответа - даже если не уверены, сделайте предположение.</li>
+            <li>Проверяйте работу - оставьте время в конце для проверки ответов.</li>
+        </ul>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <!-- Keyboard Keys -->
+        <div class="key key-1">Ä</div>
+        <div class="key key-2">7</div>
+        <div class="key key-3">8</div>
+        <div class="key key-4">Ü</div>
+        <div class="key key-5">U</div>
+        <div class="key key-6">Q</div>
+        <div class="key key-7">X</div>
+        <div class="key key-8">Z</div>
+        <div class="key key-9">5</div>
+        <div class="key key-10">Y</div>
+        
+        <!-- Geometric Shapes -->
+        <div class="shape shape-circle shape-1"></div>
+        <div class="shape shape-square shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-hexagon shape-4"></div>
+        <div class="shape shape-circle shape-5"></div>
+        <div class="shape shape-square shape-6"></div>
+        <div class="shape shape-triangle shape-7"></div>
+        <div class="shape shape-hexagon shape-8"></div>
+    </div>
+</div>
+{% endblock %}

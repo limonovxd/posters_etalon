@@ -1,0 +1,66 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Общий тест - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Back Button -->
+    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+    
+    <!-- Page Content -->
+    <div class="page-content">
+        <h1 class="page-title">Общий тест</h1>
+        
+        <div class="page-text">
+            <p>Добро пожаловать на страницу общего тестирования!</p>
+            <p>Здесь вы можете пройти комплексное тестирование по различным предметам ЕГЭ и ОГЭ.</p>
+        </div>
+        
+        <h2 class="page-subtitle">Что включает общий тест:</h2>
+        <ul class="content-list">
+            <li>Тестирование по основным предметам: русский язык, математика, обществознание</li>
+            <li>Вопросы разного уровня сложности для оценки ваших знаний</li>
+            <li>Детальный разбор результатов после прохождения теста</li>
+            <li>Рекомендации по улучшению подготовки</li>
+        </ul>
+        
+        <div class="page-text">
+            <p><strong>Продолжительность теста:</strong> 40 минут</p>
+            <p><strong>Количество вопросов:</strong> 30 вопросов</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <form method="POST" action="{{ url_for('start_test') }}" style="display: inline-block;">
+                <button type="submit" class="menu-btn btn-primary" style="max-width: 300px;">
+                    Начать тест
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <!-- Keyboard Keys -->
+        <div class="key key-1">Ä</div>
+        <div class="key key-2">7</div>
+        <div class="key key-3">8</div>
+        <div class="key key-4">Ü</div>
+        <div class="key key-5">U</div>
+        <div class="key key-6">Q</div>
+        <div class="key key-7">X</div>
+        <div class="key key-8">Z</div>
+        <div class="key key-9">5</div>
+        <div class="key key-10">Y</div>
+        
+        <!-- Geometric Shapes -->
+        <div class="shape shape-circle shape-1"></div>
+        <div class="shape shape-square shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-hexagon shape-4"></div>
+        <div class="shape shape-circle shape-5"></div>
+        <div class="shape shape-square shape-6"></div>
+        <div class="shape shape-triangle shape-7"></div>
+        <div class="shape shape-hexagon shape-8"></div>
+    </div>
+</div>
+{% endblock %}

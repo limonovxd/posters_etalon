@@ -1,0 +1,68 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Вопрос {{ question_num }} - Тест{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Progress Bar -->
+    <div class="test-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ (question_num / total_questions * 100) }}%"></div>
+        </div>
+        <div class="progress-text">Вопрос {{ question_num }} из {{ total_questions }}</div>
+    </div>
+    
+    <!-- Question Card -->
+    <div class="page-content test-question-card">
+        <div class="question-subject">{{ subject_name }}</div>
+        
+        <h2 class="question-text">{{ question.question }}</h2>
+        
+        <form method="POST" action="{{ url_for('submit_answer') }}" class="question-form">
+            <div class="options-list">
+                {% for option in question.options %}
+                <label class="option-item">
+                    <input type="radio" name="answer" value="{{ loop.index0 }}" required>
+                    <span class="option-text">{{ option }}</span>
+                </label>
+                {% endfor %}
+            </div>
+            
+            <div class="question-actions">
+                <button type="submit" class="menu-btn btn-primary">
+                    {% if question_num == total_questions %}
+                    Завершить тест
+                    {% else %}
+                    Следующий вопрос
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <!-- Keyboard Keys -->
+        <div class="key key-1">Ä</div>
+        <div class="key key-2">7</div>
+        <div class="key key-3">8</div>
+        <div class="key key-4">Ü</div>
+        <div class="key key-5">U</div>
+        <div class="key key-6">Q</div>
+        <div class="key key-7">X</div>
+        <div class="key key-8">Z</div>
+        <div class="key key-9">5</div>
+        <div class="key key-10">Y</div>
+        
+        <!-- Geometric Shapes -->
+        <div class="shape shape-circle shape-1"></div>
+        <div class="shape shape-square shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-hexagon shape-4"></div>
+        <div class="shape shape-circle shape-5"></div>
+        <div class="shape shape-square shape-6"></div>
+        <div class="shape shape-triangle shape-7"></div>
+        <div class="shape shape-hexagon shape-8"></div>
+    </div>
+</div>
+{% endblock %}

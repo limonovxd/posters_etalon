@@ -1,0 +1,76 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Результаты теста - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Back Button -->
+    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+    
+    <!-- Results Content -->
+    <div class="page-content">
+        <h1 class="page-title">Результаты теста</h1>
+        
+        <div class="results-stats">
+            <div class="results-score">{{ correct }}/{{ total }}</div>
+            <div class="results-text">Правильных ответов</div>
+            <div class="results-percentage">{{ percentage }}%</div>
+        </div>
+        
+        <div class="page-text" style="text-align: center;">
+            {% if percentage >= 80 %}
+                <p style="font-size: 24px; color: #4CAF50; font-weight: bold;">Отлично! Вы отлично справились с тестом!</p>
+            {% elif percentage >= 60 %}
+                <p style="font-size: 24px; color: #FFA500; font-weight: bold;">Хорошо! Продолжайте готовиться!</p>
+            {% elif percentage >= 40 %}
+                <p style="font-size: 24px; color: #FF9800; font-weight: bold;">Неплохо! Есть над чем поработать.</p>
+            {% else %}
+                <p style="font-size: 24px; color: #f44336; font-weight: bold;">Нужно больше практики. Не отчаивайтесь!</p>
+            {% endif %}
+        </div>
+        
+        {% if subject_stats %}
+        <div class="subject-stats">
+            <h2 class="page-subtitle">Результаты по предметам:</h2>
+            {% for stat in subject_stats %}
+            <div class="subject-stat-item">
+                <div class="subject-stat-name">{{ stat.name }}</div>
+                <div class="subject-stat-score">{{ stat.correct }}/{{ stat.total }} ({{ stat.percentage }}%)</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="{{ url_for('general_test') }}" class="menu-btn btn-primary" style="display: inline-block; text-decoration: none; max-width: 300px;">
+                Пройти тест снова
+            </a>
+        </div>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <!-- Keyboard Keys -->
+        <div class="key key-1">Ä</div>
+        <div class="key key-2">7</div>
+        <div class="key key-3">8</div>
+        <div class="key key-4">Ü</div>
+        <div class="key key-5">U</div>
+        <div class="key key-6">Q</div>
+        <div class="key key-7">X</div>
+        <div class="key key-8">Z</div>
+        <div class="key key-9">5</div>
+        <div class="key key-10">Y</div>
+        
+        <!-- Geometric Shapes -->
+        <div class="shape shape-circle shape-1"></div>
+        <div class="shape shape-square shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-hexagon shape-4"></div>
+        <div class="shape shape-circle shape-5"></div>
+        <div class="shape shape-square shape-6"></div>
+        <div class="shape shape-triangle shape-7"></div>
+        <div class="shape shape-hexagon shape-8"></div>
+    </div>
+</div>
+{% endblock %}

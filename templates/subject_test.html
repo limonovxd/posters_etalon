@@ -1,0 +1,72 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Тест по предмету - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Back Button -->
+    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+    
+    <!-- Page Content -->
+    <div class="page-content">
+        <h1 class="page-title">Тест по предмету</h1>
+        
+        <div class="page-text">
+            <p>Выберите предмет для прохождения тестирования.</p>
+            <p>Каждый тест составлен в соответствии с требованиями ЕГЭ и ОГЭ.</p>
+        </div>
+        
+        <h2 class="page-subtitle">Доступные предметы:</h2>
+        
+        {% if subjects %}
+        <div class="subjects-list">
+            {% for subject in subjects %}
+            <form method="POST" action="{{ url_for('start_subject_test', subject=subject.id) }}" style="width: 100%; margin-bottom: 15px;">
+                <button type="submit" class="menu-btn btn-secondary" style="width: 100%; text-align: left; padding-left: 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span><strong>{{ subject.name }}</strong></span>
+                        <span style="font-size: 0.9em; opacity: 0.7;">{{ subject.questions_count }} вопросов</span>
+                    </div>
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="page-text">
+            <p>На данный момент доступные тесты отсутствуют.</p>
+        </div>
+        {% endif %}
+        
+        <div class="page-text" style="margin-top: 30px;">
+            <p><strong>Формат теста:</strong> Вопросы с выбором ответа</p>
+            <p><strong>Продолжительность:</strong> Зависит от выбранного предмета</p>
+        </div>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <!-- Keyboard Keys -->
+        <div class="key key-1">Ä</div>
+        <div class="key key-2">7</div>
+        <div class="key key-3">8</div>
+        <div class="key key-4">Ü</div>
+        <div class="key key-5">U</div>
+        <div class="key key-6">Q</div>
+        <div class="key key-7">X</div>
+        <div class="key key-8">Z</div>
+        <div class="key key-9">5</div>
+        <div class="key key-10">Y</div>
+        
+        <!-- Geometric Shapes -->
+        <div class="shape shape-circle shape-1"></div>
+        <div class="shape shape-square shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-hexagon shape-4"></div>
+        <div class="shape shape-circle shape-5"></div>
+        <div class="shape shape-square shape-6"></div>
+        <div class="shape shape-triangle shape-7"></div>
+        <div class="shape shape-hexagon shape-8"></div>
+    </div>
+</div>
+
+{% endblock %}
