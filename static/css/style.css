@@ -198,6 +198,106 @@ body {
     transform: translateY(0);
 }
 
+.finish-early-btn {
+    background-color: #f44336 !important;
+    color: white !important;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: none;
+}
+
+.finish-early-btn:hover {
+    background-color: #d32f2f !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
+}
+
+.finish-early-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.modal-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+    text-align: center;
+}
+
+.modal-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.modal-body p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+}
+
+.modal-footer {
+    padding: 20px 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-top: 2px solid #f0f0f0;
+}
+
 /* Page Content Styles */
 .page-content {
     width: 100%;
@@ -271,6 +371,7 @@ body {
     background: linear-gradient(90deg, #FFA500, #FF8C00);
     border-radius: 5px;
     transition: width 0.3s ease;
+    width: var(--progress, 0%);
 }
 
 .progress-text {
@@ -1199,6 +1300,27 @@ body {
     
     .subject-stat-score {
         font-size: 20px;
+    }
+    
+    /* Modal Styles */
+    .modal-title {
+        font-size: 22px;
+    }
+    
+    .modal-body {
+        padding: 20px 15px;
+    }
+    
+    .modal-body p {
+        font-size: 15px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .modal-footer {
+        padding: 15px 20px 20px;
     }
 }
 

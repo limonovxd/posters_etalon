@@ -90,6 +90,19 @@ def submit_answer():
     
     return redirect(url_for('test_question'))
 
+@app.route("/test/finish-early", methods=['POST'])
+def finish_test_early():
+    """Досрочное завершение теста"""
+    if not session.get('test_started'):
+        test_subject = session.get('test_subject', 'general')
+        if test_subject == 'general':
+            return redirect(url_for('general_test'))
+        else:
+            return redirect(url_for('subject_test'))
+    
+    # Переходим к результатам с текущими ответами
+    return redirect(url_for('test_results'))
+
 @app.route("/test/results")
 def test_results():
     """Отображение результатов теста (универсальный маршрут для всех тестов)"""
@@ -103,11 +116,16 @@ def test_results():
     
     answers = session.get('answers', [])
     questions = session.get('test_questions', [])
+    current = session.get('current_question', 0)
     
     # Подсчет результатов
-    total = len(answers)
+    total_answered = len(answers)
+    total_questions = len(questions)
     correct = sum(1 for a in answers if a['is_correct'])
-    percentage = round((correct / total * 100) if total > 0 else 0, 1)
+    percentage = round((correct / total_answered * 100) if total_answered > 0 else 0, 1)
+    
+    # Флаг досрочного завершения
+    finished_early = total_answered < total_questions
     
     # Результаты по предметам
     subject_stats = {}
@@ -147,14 +165,17 @@ def test_results():
     session.pop('test_started', None)
     session.pop('test_questions', None)
     session.pop('current_question', None)
+    session.pop('test_subject', None)
     
     return render_template('test_results.html',
-                         total=total,
+                         total=total_answered,
+                         total_questions=total_questions,
                          correct=correct,
                          percentage=percentage,
                          subject_stats=formatted_stats,
                          answers=answers,
-                         questions=questions)
+                         questions=questions,
+                         finished_early=finished_early)
 
 @app.route("/subject-test")
 def subject_test():

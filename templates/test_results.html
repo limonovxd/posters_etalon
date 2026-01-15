@@ -11,10 +11,22 @@
     <div class="page-content">
         <h1 class="page-title">Результаты теста</h1>
         
+        {% if finished_early %}
+        <div class="page-text" style="text-align: center; background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
+            <p style="margin: 0; color: #856404; font-weight: bold;">⚠️ Тест завершен досрочно</p>
+            <p style="margin: 5px 0 0 0; color: #856404; font-size: 14px;">Отвечено: {{ total }} из {{ total_questions }} вопросов</p>
+        </div>
+        {% endif %}
+        
         <div class="results-stats">
             <div class="results-score">{{ correct }}/{{ total }}</div>
             <div class="results-text">Правильных ответов</div>
             <div class="results-percentage">{{ percentage }}%</div>
+            {% if finished_early %}
+            <div style="font-size: 14px; color: #666; margin-top: 10px;">
+                Из {{ total_questions }} вопросов
+            </div>
+            {% endif %}
         </div>
         
         <div class="page-text" style="text-align: center;">
