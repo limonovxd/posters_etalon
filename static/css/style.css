@@ -30,6 +30,8 @@ body {
     gap: 30px;
     min-height: 100vh;
     justify-content: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
 }
 
 /* Top Banner */
@@ -113,6 +115,8 @@ body {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .menu-title {
@@ -1385,5 +1389,363 @@ body {
     
     .results-text {
         font-size: 16px;
+    }
+}
+
+/* Uniform subject card sizes on mobile portrait orientation */
+@media (max-width: 768px) and (orientation: portrait) {
+    .subjects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .subjects-list form {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+    }
+
+    .subjects-list .menu-btn {
+        width: 100% !important;
+        min-height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .subjects-list .menu-btn .subject-btn-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .subjects-list .menu-btn .subject-count {
+        margin-left: 0 !important;
+    }
+}
+
+/* Lifehacks Page Styles */
+.lifehacks-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lifehacks-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.lifehack-card {
+    width: 100%;
+    background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 40px rgba(255, 165, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 165, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lifehack-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 50px rgba(255, 165, 0, 0.2), 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.lifehack-card:active {
+    cursor: grabbing;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 165, 0, 0.15);
+}
+
+.card-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.type-icon {
+    font-size: 16px;
+}
+
+.type-text {
+    color: #000;
+}
+
+.type-lifehack {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    border: 2px solid #FFB74D;
+}
+
+.type-fact {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    border: 2px solid #64B5F6;
+}
+
+.card-category {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding: 6px 12px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.card-content {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #444;
+    text-align: left;
+}
+
+.progress-indicator {
+    font-size: 16px;
+    color: #888;
+    font-weight: 500;
+    padding: 8px 20px;
+    background-color: rgba(255, 165, 0, 0.1);
+    border-radius: 20px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.action-btn-primary {
+    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+    color: #000;
+}
+
+.action-btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #FFB733 0%, #FFA500 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 165, 0, 0.35);
+}
+
+.action-btn-secondary {
+    background: #ffffff;
+    color: #000;
+    border: 2px solid #e0e0e0;
+}
+
+.action-btn-secondary:hover:not(:disabled) {
+    background: #f5f5f5;
+    border-color: #FFA500;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.swipe-hint {
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.back-btn-container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card animations */
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive for lifehacks page */
+@media (max-width: 768px) {
+    .lifehacks-container {
+        max-width: 100%;
+    }
+    
+    .lifehack-card {
+        padding: 25px 20px;
+    }
+    
+    .card-title {
+        font-size: 22px;
+    }
+    
+    .card-content {
+        font-size: 16px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .card-type {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+    
+    .card-category {
+        font-size: 11px;
+    }
+    
+    .action-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .progress-indicator {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lifehack-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+    
+    .card-content {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .action-btn {
+        width: 100%;
+        padding: 14px 20px;
+    }
+    
+    .swipe-hint {
+        font-size: 12px;
+    }
+    
+    .page-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 360px) {
+    .lifehack-card {
+        padding: 18px 14px;
+    }
+    
+    .card-title {
+        font-size: 18px;
+    }
+    
+    .card-content {
+        font-size: 14px;
+    }
+    
+    .card-type {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    
+    .type-icon {
+        font-size: 14px;
+    }
+    
+    .card-category {
+        font-size: 10px;
+        padding: 5px 10px;
     }
 }

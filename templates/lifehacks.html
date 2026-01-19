@@ -4,45 +4,51 @@
 
 {% block content %}
 <div class="container">
-    <!-- Back Button -->
-    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
-    
     <!-- Page Content -->
-    <div class="page-content">
+    <div class="page-content lifehacks-page">
         <h1 class="page-title">Лайфхаки и факты</h1>
         
-        <div class="page-text">
-            <p>Полезные советы и интересные факты для успешной подготовки к ЕГЭ и ОГЭ.</p>
+        <div class="lifehacks-container">
+            <!-- Card Container -->
+            <div class="card-container">
+                <div class="lifehack-card" id="lifehackCard">
+                    <div class="card-header">
+                        <span class="card-type" id="cardType">
+                            <span class="type-icon">💡</span>
+                            <span class="type-text">Лайфхак</span>
+                        </span>
+                        <span class="card-category" id="cardCategory">Подготовка</span>
+                    </div>
+                    <h2 class="card-title" id="cardTitle">Загрузка...</h2>
+                    <p class="card-content" id="cardContent">Загрузка полезной информации...</p>
+                </div>
+                
+                <!-- Progress Indicator -->
+                <div class="progress-indicator">
+                    <span id="currentIndex">1</span> / <span id="totalCount">30</span>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="card-actions">
+                    <button class="action-btn action-btn-secondary" id="prevBtn" disabled>
+                        ← Назад
+                    </button>
+                    <button class="action-btn action-btn-primary" id="nextBtn">
+                        Следующий →
+                    </button>
+                </div>
+                
+                <!-- Swipe Hint -->
+                <div class="swipe-hint">
+                    <span>Свайпните влево для следующей карточки →</span>
+                </div>
+            </div>
         </div>
         
-        <h2 class="page-subtitle">Лайфхаки для подготовки:</h2>
-        <ul class="content-list">
-            <li><strong>Планируйте время</strong> - составьте расписание подготовки и следуйте ему. Выделяйте время на каждый предмет.</li>
-            <li><strong>Решайте пробные варианты</strong> - регулярное прохождение тестов помогает привыкнуть к формату экзамена.</li>
-            <li><strong>Повторяйте материал</strong> - используйте технику интервального повторения для лучшего запоминания.</li>
-            <li><strong>Делайте перерывы</strong> - не забывайте отдыхать. Оптимальный режим: 45 минут учебы, 15 минут отдыха.</li>
-            <li><strong>Записывайте ошибки</strong> - ведите дневник ошибок и регулярно его просматривайте.</li>
-            <li><strong>Объясняйте другим</strong> - попробуйте объяснить изученный материал другу или родственнику.</li>
-        </ul>
-        
-        <h2 class="page-subtitle">Интересные факты:</h2>
-        <ul class="content-list">
-            <li>ЕГЭ проводится в России с 2001 года, а с 2009 года стал обязательным для всех выпускников.</li>
-            <li>Средний балл ЕГЭ по русскому языку в 2023 году составил 68 баллов.</li>
-            <li>Самый популярный предмет по выбору на ЕГЭ - обществознание.</li>
-            <li>На выполнение экзаменационной работы по математике отводится 3 часа 55 минут (235 минут).</li>
-            <li>Максимальный балл по ЕГЭ - 100 баллов, но некоторые вузы могут давать дополнительные баллы.</li>
-            <li>ОГЭ сдают учащиеся 9 классов, а ЕГЭ - учащиеся 11 классов.</li>
-        </ul>
-        
-        <h2 class="page-subtitle">Советы на экзамене:</h2>
-        <ul class="content-list">
-            <li>Читайте задание внимательно до конца - не торопитесь с ответом.</li>
-            <li>Начинайте с легких заданий - это поможет настроиться и сэкономить время.</li>
-            <li>Следите за временем - распределите время на все части экзамена.</li>
-            <li>Не оставляйте вопросы без ответа - даже если не уверены, сделайте предположение.</li>
-            <li>Проверяйте работу - оставьте время в конце для проверки ответов.</li>
-        </ul>
+        <!-- Back Button -->
+        <div class="back-btn-container">
+            <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+        </div>
     </div>
     
     <!-- Background Elements -->
@@ -71,3 +77,192 @@
     </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script>
+    // Lifehacks data
+    let lifehacksData = [];
+    let currentIndex = 0;
+    let isAnimating = false;
+    
+    // DOM Elements
+    const card = document.getElementById('lifehackCard');
+    const cardType = document.getElementById('cardType');
+    const cardCategory = document.getElementById('cardCategory');
+    const cardTitle = document.getElementById('cardTitle');
+    const cardContent = document.getElementById('cardContent');
+    const currentIndexEl = document.getElementById('currentIndex');
+    const totalCountEl = document.getElementById('totalCount');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Type mappings
+    const typeConfig = {
+        'lifehack': {
+            icon: '💡',
+            text: 'Лайфхак',
+            class: 'type-lifehack'
+        },
+        'fact': {
+            icon: '📚',
+            text: 'Факт',
+            class: 'type-fact'
+        }
+    };
+    
+    const categoryNames = {
+        'preparation': 'Подготовка',
+        'study': 'Учёба',
+        'exam': 'На экзамене',
+        'health': 'Здоровье',
+        'logistics': 'Организация',
+        'ege-history': 'История ЕГЭ',
+        'statistics': 'Статистика',
+        'rules': 'Правила',
+        'basics': 'Основы',
+        'changes': 'Изменения',
+        'structure': 'Структура',
+        'admissions': 'Поступление'
+    };
+    
+    // Initialize
+    async function init() {
+        try {
+            const response = await fetch('/api/lifehacks');
+            const result = await response.json();
+            if (result.success) {
+                lifehacksData = result.data;
+                totalCountEl.textContent = lifehacksData.length;
+                
+                // Shuffle initially
+                shuffleArray(lifehacksData);
+                
+                // Show first card
+                showCard(0, false);
+            } else {
+                showError('Ошибка загрузки данных');
+            }
+        } catch (error) {
+            console.error('Error loading lifehacks:', error);
+            showError('Ошибка соединения');
+        }
+    }
+    
+    // Show card with animation
+    function showCard(index, animate = true) {
+        if (isAnimating || index < 0 || index >= lifehacksData.length) return;
+        
+        isAnimating = true;
+        const item = lifehacksData[index];
+        
+        // Update UI
+        currentIndex = index;
+        currentIndexEl.textContent = index + 1;
+        
+        // Update buttons state
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === lifehacksData.length - 1;
+        
+        // Update card content
+        const typeInfo = typeConfig[item.type] || typeConfig.lifehack;
+        
+        // Remove old type class
+        cardType.classList.remove('type-lifehack', 'type-fact');
+        
+        cardType.innerHTML = `
+            <span class="type-icon">${typeInfo.icon}</span>
+            <span class="type-text">${typeInfo.text}</span>
+        `;
+        cardType.classList.add(typeInfo.class);
+        
+        cardCategory.textContent = categoryNames[item.category] || item.category;
+        cardTitle.textContent = item.title;
+        cardContent.textContent = item.content;
+        
+        if (animate) {
+            // Animate out
+            card.style.animation = 'slideOutLeft 0.3s ease forwards';
+            
+            setTimeout(() => {
+                // Animate in
+                card.style.animation = 'slideInRight 0.3s ease forwards';
+                card.style.opacity = '1';
+                card.style.transform = 'translateX(0)';
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+        } else {
+            isAnimating = false;
+        }
+    }
+    
+    // Show error
+    function showError(message) {
+        cardTitle.textContent = 'Ошибка';
+        cardContent.textContent = message;
+    }
+    
+    // Fisher-Yates shuffle
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    
+    // Event Listeners
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            showCard(currentIndex - 1);
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < lifehacksData.length - 1) {
+            showCard(currentIndex + 1);
+        }
+    });
+    
+    // Touch handling for swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+    
+    card.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    card.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeDistance = touchEndX - touchStartX;
+        
+        // Swipe left - next card
+        if (swipeDistance < -minSwipeDistance && currentIndex < lifehacksData.length - 1) {
+            showCard(currentIndex + 1);
+        }
+        // Swipe right - previous card
+        else if (swipeDistance > minSwipeDistance && currentIndex > 0) {
+            showCard(currentIndex - 1);
+        }
+    }
+    
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            showCard(currentIndex - 1);
+        } else if (e.key === 'ArrowRight' && currentIndex < lifehacksData.length - 1) {
+            showCard(currentIndex + 1);
+        }
+    });
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', init);
+</script>
+{% endblock %}
+

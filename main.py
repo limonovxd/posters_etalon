@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import random
+import json
+import os
 from test_loader import get_test_questions, get_all_subjects, load_test
 
 app = Flask(__name__)
@@ -218,6 +220,45 @@ def start_subject_test(subject):
 @app.route("/lifehacks")
 def lifehacks():
     return render_template('lifehacks.html')
+
+@app.route("/api/lifehacks")
+def api_lifehacks():
+    """Возвращает все лайфхаки и факты в формате JSON"""
+    data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify({'success': True, 'data': data, 'count': len(data)})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route("/api/lifehacks/random")
+def api_lifehacks_random():
+    """Возвращает один случайный лайфхак или факт"""
+    data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        if data:
+            item = random.choice(data)
+            return jsonify({'success': True, 'data': item})
+        return jsonify({'success': False, 'error': 'No data available'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route("/api/lifehacks/<int:item_id>")
+def api_lifehacks_item(item_id):
+    """Возвращает конкретный лайфхак или факт по ID"""
+    data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        item = next((x for x in data if x['id'] == item_id), None)
+        if item:
+            return jsonify({'success': True, 'data': item})
+        return jsonify({'success': False, 'error': 'Item not found'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
 
 if __name__ == "__main__":
     app.run(debug=True)

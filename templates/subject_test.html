@@ -4,9 +4,6 @@
 
 {% block content %}
 <div class="container">
-    <!-- Back Button -->
-    <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
-    
     <!-- Page Content -->
     <div class="page-content">
         <h1 class="page-title">Тест по предмету</h1>
@@ -23,9 +20,9 @@
             {% for subject in subjects %}
             <form method="POST" action="{{ url_for('start_subject_test', subject=subject.id) }}" style="width: 100%; margin-bottom: 15px;">
                 <button type="submit" class="menu-btn btn-secondary" style="width: 100%; text-align: left; padding-left: 30px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                        <span><strong>{{ subject.name }}</strong></span>
-                        <span style="font-size: 0.9em; opacity: 0.7;">{{ subject.questions_count }} вопросов</span>
+                    <div class="subject-btn-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span class="subject-name"><strong>{{ subject.name }}</strong></span>
+                        <span class="subject-count" style="font-size: 0.9em; opacity: 0.7;">{{ subject.questions_count }} вопросов</span>
                     </div>
                 </button>
             </form>
@@ -41,6 +38,9 @@
             <p><strong>Формат теста:</strong> Вопросы с выбором ответа</p>
             <p><strong>Продолжительность:</strong> Зависит от выбранного предмета</p>
         </div>
+        
+        <!-- Back Button -->
+        <a href="{{ url_for('index') }}" class="back-btn" style="margin-top: 20px;">← На главную</a>
     </div>
     
     <!-- Background Elements -->
