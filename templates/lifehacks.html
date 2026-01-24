@@ -40,7 +40,7 @@
                 
                 <!-- Swipe Hint -->
                 <div class="swipe-hint">
-                    <span>Свайпните влево для следующей карточки →</span>
+                    <span>Свайпните влево или вправо ← →</span>
                 </div>
             </div>
         </div>
@@ -50,32 +50,6 @@
             <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
         </div>
     </div>
-    
-    <!-- Background Elements -->
-    <div class="background-elements">
-        <!-- Keyboard Keys -->
-        <div class="key key-1">Ä</div>
-        <div class="key key-2">7</div>
-        <div class="key key-3">8</div>
-        <div class="key key-4">Ü</div>
-        <div class="key key-5">U</div>
-        <div class="key key-6">Q</div>
-        <div class="key key-7">X</div>
-        <div class="key key-8">Z</div>
-        <div class="key key-9">5</div>
-        <div class="key key-10">Y</div>
-        
-        <!-- Geometric Shapes -->
-        <div class="shape shape-circle shape-1"></div>
-        <div class="shape shape-square shape-2"></div>
-        <div class="shape shape-triangle shape-3"></div>
-        <div class="shape shape-hexagon shape-4"></div>
-        <div class="shape shape-circle shape-5"></div>
-        <div class="shape shape-square shape-6"></div>
-        <div class="shape shape-triangle shape-7"></div>
-        <div class="shape shape-hexagon shape-8"></div>
-    </div>
-</div>
 {% endblock %}
 
 {% block scripts %}
@@ -149,7 +123,7 @@
     }
     
     // Show card with animation
-    function showCard(index, animate = true) {
+    function showCard(index, animate = true, direction = 'next') {
         if (isAnimating || index < 0 || index >= lifehacksData.length) return;
         
         isAnimating = true;
@@ -180,12 +154,16 @@
         cardContent.textContent = item.content;
         
         if (animate) {
+            // Determine animation based on direction
+            const outAnimation = direction === 'next' ? 'slideOutLeft 0.3s ease forwards' : 'slideOutRight 0.3s ease forwards';
+            const inAnimation = direction === 'next' ? 'slideInRight 0.3s ease forwards' : 'slideInLeft 0.3s ease forwards';
+            
             // Animate out
-            card.style.animation = 'slideOutLeft 0.3s ease forwards';
+            card.style.animation = outAnimation;
             
             setTimeout(() => {
                 // Animate in
-                card.style.animation = 'slideInRight 0.3s ease forwards';
+                card.style.animation = inAnimation;
                 card.style.opacity = '1';
                 card.style.transform = 'translateX(0)';
                 
@@ -215,13 +193,13 @@
     // Event Listeners
     prevBtn.addEventListener('click', () => {
         if (currentIndex > 0) {
-            showCard(currentIndex - 1);
+            showCard(currentIndex - 1, true, 'prev');
         }
     });
     
     nextBtn.addEventListener('click', () => {
         if (currentIndex < lifehacksData.length - 1) {
-            showCard(currentIndex + 1);
+            showCard(currentIndex + 1, true, 'next');
         }
     });
     
@@ -244,20 +222,20 @@
         
         // Swipe left - next card
         if (swipeDistance < -minSwipeDistance && currentIndex < lifehacksData.length - 1) {
-            showCard(currentIndex + 1);
+            showCard(currentIndex + 1, true, 'next');
         }
         // Swipe right - previous card
         else if (swipeDistance > minSwipeDistance && currentIndex > 0) {
-            showCard(currentIndex - 1);
+            showCard(currentIndex - 1, true, 'prev');
         }
     }
     
     // Keyboard support
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            showCard(currentIndex - 1);
+            showCard(currentIndex - 1, true, 'prev');
         } else if (e.key === 'ArrowRight' && currentIndex < lifehacksData.length - 1) {
-            showCard(currentIndex + 1);
+            showCard(currentIndex + 1, true, 'next');
         }
     });
     

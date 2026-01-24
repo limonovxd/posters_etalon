@@ -188,7 +188,7 @@ function initSwipeHandling() {
         const { current } = getCurrentIndex();
         
         if (index !== current) {
-            // Trigger card change via button click
+            // Trigger card change via button click with direction
             const nextBtn = document.getElementById('nextBtn');
             const prevBtn = document.getElementById('prevBtn');
             
