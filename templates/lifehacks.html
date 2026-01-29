@@ -28,16 +28,6 @@
                     <span id="currentIndex">1</span> / <span id="totalCount">30</span>
                 </div>
                 
-                <!-- Action Buttons -->
-                <div class="card-actions">
-                    <button class="action-btn action-btn-secondary" id="prevBtn" disabled>
-                        ← Назад
-                    </button>
-                    <button class="action-btn action-btn-primary" id="nextBtn">
-                        Следующий →
-                    </button>
-                </div>
-                
                 <!-- Swipe Hint -->
                 <div class="swipe-hint">
                     <span>Свайпните влево или вправо ← →</span>
@@ -67,8 +57,6 @@
     const cardContent = document.getElementById('cardContent');
     const currentIndexEl = document.getElementById('currentIndex');
     const totalCountEl = document.getElementById('totalCount');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
     
     // Type mappings
     const typeConfig = {
@@ -122,7 +110,7 @@
         }
     }
     
-    // Show card with animation
+    // Show card with smooth animation
     function showCard(index, animate = true, direction = 'next') {
         if (isAnimating || index < 0 || index >= lifehacksData.length) return;
         
@@ -132,10 +120,6 @@
         // Update UI
         currentIndex = index;
         currentIndexEl.textContent = index + 1;
-        
-        // Update buttons state
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === lifehacksData.length - 1;
         
         // Update card content
         const typeInfo = typeConfig[item.type] || typeConfig.lifehack;
@@ -155,22 +139,28 @@
         
         if (animate) {
             // Determine animation based on direction
-            const outAnimation = direction === 'next' ? 'slideOutLeft 0.3s ease forwards' : 'slideOutRight 0.3s ease forwards';
-            const inAnimation = direction === 'next' ? 'slideInRight 0.3s ease forwards' : 'slideInLeft 0.3s ease forwards';
+            const outAnimation = direction === 'next' ? 'slideOutLeft 0.25s ease-out forwards' : 'slideOutRight 0.25s ease-out forwards';
+            const inAnimation = direction === 'next' ? 'slideInRight 0.25s ease-out forwards' : 'slideInLeft 0.25s ease-out forwards';
             
             // Animate out
             card.style.animation = outAnimation;
             
             setTimeout(() => {
+                // Reset animation and show content immediately
+                card.style.animation = 'none';
+                card.offsetHeight; // Trigger reflow
+                card.style.opacity = '1';
+                card.style.transform = 'translate3d(0, 0, 0)';
+                
                 // Animate in
                 card.style.animation = inAnimation;
-                card.style.opacity = '1';
-                card.style.transform = 'translateX(0)';
                 
                 setTimeout(() => {
+                    // Clean up animation styles
+                    card.style.animation = 'none';
                     isAnimating = false;
-                }, 300);
-            }, 300);
+                }, 250);
+            }, 250);
         } else {
             isAnimating = false;
         }
@@ -190,32 +180,36 @@
         }
     }
     
-    // Event Listeners
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            showCard(currentIndex - 1, true, 'prev');
-        }
-    });
-    
-    nextBtn.addEventListener('click', () => {
-        if (currentIndex < lifehacksData.length - 1) {
-            showCard(currentIndex + 1, true, 'next');
-        }
-    });
-    
     // Touch handling for swipe
     let touchStartX = 0;
     let touchEndX = 0;
     const minSwipeDistance = 50;
     
-    card.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    // Use passive: false to allow preventDefault
+    card.addEventListener('touchstart', handleTouchStart, { passive: false });
+    card.addEventListener('touchmove', handleTouchMove, { passive: false });
+    card.addEventListener('touchend', handleTouchEnd, { passive: false });
     
-    card.addEventListener('touchend', (e) => {
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        // Prevent default only if this looks like a horizontal gesture
+        // We'll check direction in touchmove
+    }
+    
+    function handleTouchMove(e) {
+        const currentX = e.changedTouches[0].screenX;
+        const deltaX = currentX - touchStartX;
+        
+        // If horizontal movement is significant, prevent vertical scroll
+        if (Math.abs(deltaX) > 10) {
+            e.preventDefault();
+        }
+    }
+    
+    function handleTouchEnd(e) {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
-    }, { passive: true });
+    }
     
     function handleSwipe() {
         const swipeDistance = touchEndX - touchStartX;

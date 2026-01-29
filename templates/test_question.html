@@ -82,11 +82,10 @@ function showFinishModal() {
     const questionNum = parseInt(modal.getAttribute('data-question-num')) || 0;
     const total = parseInt(modal.getAttribute('data-total-questions')) || 0;
     const answered = questionNum - 1;
-    const unanswered = total - answered;
     
     let message = 'Вы уверены, что хотите завершить тест досрочно?';
-    if (unanswered > 0) {
-        message += '<br><br><strong>Осталось неотвеченных вопросов: ' + unanswered + ' из ' + total + '</strong>';
+    if (answered > 0) {
+        message += '<br><br><strong>Отвечено на вопросов: ' + answered + ' из ' + total + '</strong>';
     }
     
     messageEl.innerHTML = message;

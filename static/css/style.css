@@ -555,6 +555,29 @@ body {
     margin-top: 40px;
 }
 
+/* Results Page Action Buttons - Unified container with same width */
+.results-actions {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.results-actions .menu-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.results-actions .back-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
 .subject-stat-item {
     padding: 20px;
     margin-bottom: 15px;
@@ -1305,6 +1328,8 @@ body {
 
 .lifehack-card {
     width: 100%;
+    min-height: 400px;
+    max-height: 500px;
     background-color: transparent;
     border-radius: 20px;
     padding: 30px 25px;
@@ -1313,6 +1338,13 @@ body {
     cursor: grab;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .lifehack-card:hover {
@@ -1380,6 +1412,7 @@ body {
     margin-bottom: 20px;
     line-height: 1.3;
     text-align: left;
+    flex-shrink: 0;
 }
 
 .card-content {
@@ -1387,6 +1420,8 @@ body {
     line-height: 1.7;
     color: #444;
     text-align: left;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .progress-indicator {
@@ -1473,48 +1508,48 @@ body {
     justify-content: center;
 }
 
-/* Card animations */
+/* Card animations - optimized with translate3d for hardware acceleration */
 @keyframes slideOutLeft {
     from {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
     to {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translate3d(-100px, 0, 0);
     }
 }
 
 @keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translate3d(100px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes slideOutRight {
     from {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
     to {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translate3d(100px, 0, 0);
     }
 }
 
 @keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translate3d(-100px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -1526,6 +1561,8 @@ body {
     
     .lifehack-card {
         padding: 25px 20px;
+        min-height: 380px;
+        max-height: 480px;
     }
     
     .card-title {
@@ -1565,6 +1602,8 @@ body {
     .lifehack-card {
         padding: 20px 16px;
         border-radius: 16px;
+        min-height: 350px;
+        max-height: 450px;
     }
     
     .card-title {
@@ -1600,6 +1639,8 @@ body {
 @media (max-width: 360px) {
     .lifehack-card {
         padding: 18px 14px;
+        min-height: 340px;
+        max-height: 420px;
     }
     
     .card-title {
@@ -1733,6 +1774,8 @@ body {
     .lifehack-card {
         padding: 25px 20px;
         border-radius: 18px;
+        min-height: 380px;
+        max-height: 480px;
     }
     
     .card-title {
@@ -1944,12 +1987,38 @@ body {
         font-size: 14px;
     }
     
+    .lifehack-card {
+        padding: 16px 12px;
+        min-height: 320px;
+        max-height: 400px;
+    }
+    
+    .card-title {
+        font-size: 16px;
+    }
+    
+    .card-content {
+        font-size: 13px;
+    }
+    
     .results-score {
         font-size: 48px;
     }
     
     .results-percentage {
         font-size: 32px;
+    }
+
+    /* Results Actions - Responsive */
+    .results-actions {
+        max-width: 100%;
+        margin-top: 30px;
+        gap: 12px;
+    }
+
+    .results-actions .menu-btn {
+        padding: 18px 20px;
+        font-size: 18px;
     }
 }
 
