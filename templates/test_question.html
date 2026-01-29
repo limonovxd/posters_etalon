@@ -28,14 +28,16 @@
                     <p id="modal-message">Вы уверены, что хотите завершить тест досрочно?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="{{ url_for('finish_test_early') }}" style="display: inline-block;">
-                        <button type="submit" class="menu-btn btn-primary" style="margin-right: 10px;">
-                            Да, завершить
+                    <div class="modal-buttons">
+                        <form method="POST" action="{{ url_for('finish_test_early') }}">
+                            <button type="submit" class="menu-btn btn-primary">
+                                Да, завершить
+                            </button>
+                        </form>
+                        <button type="button" class="menu-btn btn-secondary" onclick="hideFinishModal()">
+                            Отмена
                         </button>
-                    </form>
-                    <button type="button" class="menu-btn btn-secondary" onclick="hideFinishModal()">
-                        Отмена
-                    </button>
+                    </div>
                 </div>
             </div>
         </div>

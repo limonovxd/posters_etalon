@@ -26,17 +26,16 @@
             <p><strong>Количество вопросов:</strong> 30 вопросов</p>
         </div>
         
-        <div style="text-align: center; margin-top: 40px;">
-            <form method="POST" action="{{ url_for('start_test') }}" style="display: inline-block;">
-                <button type="submit" class="menu-btn btn-primary" style="max-width: 300px;">
+        <!-- Buttons Container -->
+        <div class="test-actions">
+            <form method="POST" action="{{ url_for('start_test') }}">
+                <button type="submit" class="menu-btn btn-primary">
                     Начать тест
                 </button>
             </form>
-        </div>
-        
-        <!-- Back Button -->
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="{{ url_for('index') }}" class="back-btn">← На главную</a>
+            <a href="{{ url_for('index') }}" class="back-btn">
+                На главную
+            </a>
         </div>
     </div>
 {% endblock %}
