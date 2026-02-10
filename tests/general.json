@@ -1,7 +1,7 @@
 {
   "subject": "general",
   "subject_name": "Общий тест",
-  "subjects": ["russian", "math", "informatics"],
+  "subjects": ["russian", "math_basic", "informatics"],
   "questions_per_subject": 10,
   "questions": []
 }

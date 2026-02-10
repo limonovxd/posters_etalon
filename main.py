@@ -124,10 +124,12 @@ def test_results():
     total_answered = len(answers)
     total_questions = len(questions)
     correct = sum(1 for a in answers if a['is_correct'])
-    percentage = round((correct / total_answered * 100) if total_answered > 0 else 0, 1)
     
     # Флаг досрочного завершения
     finished_early = total_answered < total_questions
+    
+    # Всегда рекомендуем лайфхаки
+    show_lifehacks_recommendation = True
     
     # Результаты по предметам
     subject_stats = {}
@@ -159,8 +161,7 @@ def test_results():
         formatted_stats.append({
             'name': stats.get('name', subject),
             'correct': stats['correct'],
-            'total': stats['total'],
-            'percentage': round((stats['correct'] / stats['total'] * 100) if stats['total'] > 0 else 0, 1)
+            'total': stats['total']
         })
     
     # Очищаем сессию
@@ -173,11 +174,11 @@ def test_results():
                          total=total_answered,
                          total_questions=total_questions,
                          correct=correct,
-                         percentage=percentage,
                          subject_stats=formatted_stats,
                          answers=answers,
                          questions=questions,
-                         finished_early=finished_early)
+                         finished_early=finished_early,
+                         show_lifehacks_recommendation=show_lifehacks_recommendation)
 
 @app.route("/subject-test")
 def subject_test():

@@ -10,33 +10,32 @@
         
         {% if finished_early %}
         <div class="page-text" style="text-align: center; background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
-            <p style="margin: 0; color: #856404; font-weight: bold;">⚠️ Тест завершен досрочно</p>
+            <p style="margin: 0; color: #856404; font-weight: bold;"> Тест завершен досрочно</p>
             <p style="margin: 5px 0 0 0; color: #856404; font-size: 14px;">Отвечено: {{ total }} из {{ total_questions }} вопросов</p>
         </div>
         {% endif %}
         
         <div class="results-stats">
-            <div class="results-score">{{ correct }}/{{ total }}</div>
+            <div class="results-score">{{ correct }}/{{ total_questions }}</div>
             <div class="results-text">Правильных ответов</div>
-            <div class="results-percentage">{{ percentage }}%</div>
             {% if finished_early %}
             <div style="font-size: 14px; color: #666; margin-top: 10px;">
-                Из {{ total_questions }} вопросов
+                Отвечено: {{ total }} из {{ total_questions }} вопросов
             </div>
             {% endif %}
         </div>
         
         <div class="page-text" style="text-align: center;">
-            {% if percentage >= 80 %}
-                <p style="font-size: 24px; color: #4CAF50; font-weight: bold;">Отлично! Вы отлично справились с тестом!</p>
-            {% elif percentage >= 60 %}
-                <p style="font-size: 24px; color: #FFA500; font-weight: bold;">Хорошо! Продолжайте готовиться!</p>
-            {% elif percentage >= 40 %}
-                <p style="font-size: 24px; color: #FF9800; font-weight: bold;">Неплохо! Есть над чем поработать.</p>
-            {% else %}
-                <p style="font-size: 24px; color: #f44336; font-weight: bold;">Нужно больше практики. Не отчаивайтесь!</p>
-            {% endif %}
+            <p style="font-size: 24px; color: #333; font-weight: bold;">Спасибо за прохождение теста!</p>
         </div>
+        
+        {% if show_lifehacks_recommendation %}
+        <div class="lifehacks-recommendation" style="background-color: #fff8e1; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; border-left: 4px solid #ff9800;">
+            <p style="margin: 0 0 10px 0; color: #e65100; font-size: 16px; font-weight: bold;">💡 Советуем заглянуть в раздел «Лайфхаки и факты»!</p>
+            <p style="margin: 0 0 15px 0; color: #f57c00; font-size: 14px;">Там вы найдёте полезные советы по подготовке к экзаменам, которые помогут улучшить ваши результаты.</p>
+            <a href="{{ url_for('lifehacks') }}" class="menu-btn" style="display: inline-block; background-color: #ff9800; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background-color 0.3s;">Перейти к лайфхакам</a>
+        </div>
+        {% endif %}
         
         {% if subject_stats %}
         <div class="subject-stats">
@@ -44,7 +43,7 @@
             {% for stat in subject_stats %}
             <div class="subject-stat-item">
                 <div class="subject-stat-name">{{ stat.name }}</div>
-                <div class="subject-stat-score">{{ stat.correct }}/{{ stat.total }} ({{ stat.percentage }}%)</div>
+                <div class="subject-stat-score">{{ stat.correct }}/{{ stat.total }}</div>
             </div>
             {% endfor %}
         </div>
