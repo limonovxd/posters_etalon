@@ -1,0 +1,116 @@
+/* Subject Test Page Specific Styles */
+
+/* Subject Buttons Styles - Centered with count below subject name */
+.subjects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+}
+
+.subjects-list form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.subjects-list .menu-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    text-align: center;
+    min-height: 100px;
+}
+
+.subjects-list .subject-name {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.subjects-list .subject-count {
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* Responsive for subject buttons */
+@media (max-width: 768px) {
+    .subjects-list form {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .subjects-list .menu-btn {
+        padding: 20px 15px;
+        min-height: 80px;
+    }
+    
+    .subjects-list .subject-name {
+        font-size: 0.95em;
+        margin-bottom: 6px;
+    }
+    
+    .subjects-list .subject-count {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .subjects-list .menu-btn {
+        padding: 18px 15px;
+        min-height: 80px;
+    }
+    
+    .subjects-list .subject-name {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+    
+    .subjects-list .subject-count {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 390px) {
+    .subjects-list .menu-btn {
+        padding: 16px 12px;
+        min-height: 80px;
+    }
+}
+
+/* Uniform subject card sizes on mobile portrait orientation */
+@media (max-width: 768px) and (orientation: portrait) {
+    .subjects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .subjects-list form {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+    }
+
+    .subjects-list .menu-btn {
+        width: 100% !important;
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .subjects-list .menu-btn .subject-btn-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .subjects-list .menu-btn .subject-count {
+        margin-left: 0 !important;
+    }
+}

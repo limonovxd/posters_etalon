@@ -2,6 +2,10 @@
 
 {% block title %}Результаты теста - Центр подготовки ЕГЭ ОГЭ{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/test_results.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Results Content -->
@@ -9,15 +13,14 @@
         <h1 class="page-title">Результаты теста</h1>
         
         {% if finished_early %}
-        <div class="page-text" style="text-align: center; background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
-            <p style="margin: 0; color: #856404; font-weight: bold;"> Тест завершен досрочно</p>
-            <p style="margin: 5px 0 0 0; color: #856404; font-size: 14px;">Отвечено: {{ total }} из {{ total_questions }} вопросов</p>
+        <div class="results-alert results-alert-warning">
+            <p class="results-alert-title">Тест завершен досрочно</p>
+            <p class="results-alert-text">Отвечено: {{ total }} из {{ total_questions }} вопросов</p>
         </div>
         {% endif %}
         
         <div class="results-stats">
             <div class="results-score">{{ correct }}/{{ total_questions }}</div>
-            <div class="results-text">Правильных ответов</div>
             {% if finished_early %}
             <div style="font-size: 14px; color: #666; margin-top: 10px;">
                 Отвечено: {{ total }} из {{ total_questions }} вопросов
@@ -25,15 +28,18 @@
             {% endif %}
         </div>
         
-        <div class="page-text" style="text-align: center;">
-            <p style="font-size: 24px; color: #333; font-weight: bold;">Спасибо за прохождение теста!</p>
+        {% if is_failed %}
+        <div class="results-alert results-alert-danger">
+            <p class="results-alert-title">Тест провален</p>
+            <p class="results-alert-text">Для успешной сдачи теста необходимо набрать минимум 75 процентов правильных ответов</p>
         </div>
-        
+        {% endif %}
+         
         {% if show_lifehacks_recommendation %}
-        <div class="lifehacks-recommendation" style="background-color: #fff8e1; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; border-left: 4px solid #ff9800;">
-            <p style="margin: 0 0 10px 0; color: #e65100; font-size: 16px; font-weight: bold;">💡 Советуем заглянуть в раздел «Лайфхаки и факты»!</p>
-            <p style="margin: 0 0 15px 0; color: #f57c00; font-size: 14px;">Там вы найдёте полезные советы по подготовке к экзаменам, которые помогут улучшить ваши результаты.</p>
-            <a href="{{ url_for('lifehacks') }}" class="menu-btn" style="display: inline-block; background-color: #ff9800; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background-color 0.3s;">Перейти к лайфхакам</a>
+        <div class="lifehacks-recommendation">
+            <p class="lifehacks-recommendation-title"> Советуем заглянуть в раздел «Советы»!</p>
+            <p class="lifehacks-recommendation-text">Там вы найдёте полезные советы по подготовке к экзаменам, которые помогут улучшить ваши результаты.</p>
+            <a href="{{ url_for('lifehacks') }}" class="lifehacks-link">Перейти к советам</a>
         </div>
         {% endif %}
         

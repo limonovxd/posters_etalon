@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>{% block title %}Центр подготовки ЕГЭ ОГЭ{% endblock %}</title>
+    
+    <!-- Common styles (shared across all pages) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Page-specific styles -->
     {% block head %}{% endblock %}
 </head>
-<body>
+
+<body class="{% if modal_open %}modal-open{% endif %}">
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block scripts %}{% endblock %}

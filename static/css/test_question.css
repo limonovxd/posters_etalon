@@ -1,0 +1,221 @@
+
+/* Test Progress */
+.test-progress {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFA500, #FF8C00);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    width: var(--progress, 0%);
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Test Question Card */
+.test-question-card {
+    padding: 40px 30px;
+}
+
+.question-subject {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #FFA500;
+    color: #000;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.question-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.question-form {
+    width: 100%;
+}
+
+/* Options List */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    background-color: #f0f0f0;
+    border-color: #FFA500;
+    transform: translateX(5px);
+}
+
+.option-item input[type="radio"],
+.option-item input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: #FFA500;
+}
+
+.option-item input[type="radio"]:checked + .option-text,
+.option-item input[type="checkbox"]:checked + .option-text {
+    color: #FFA500;
+    font-weight: bold;
+}
+
+.option-item:has(input[type="radio"]:checked),
+.option-item:has(input[type="checkbox"]:checked) {
+    background-color: #fff5e6;
+    border-color: #FFA500;
+}
+
+.option-text {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.question-actions {
+    text-align: center;
+}
+
+/* Responsive for Test Question Styles */
+@media (max-width: 768px) {
+    .test-question-card {
+        padding: 30px 20px;
+    }
+    
+    .question-text {
+        font-size: 24px;
+    }
+    
+    .option-item {
+        padding: 16px;
+    }
+    
+    .option-text {
+        font-size: 16px;
+    }
+    
+    .question-subject {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .test-question-card {
+        padding: 20px 15px;
+    }
+    
+    .question-text {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .option-item {
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .option-text {
+        font-size: 15px;
+    }
+    
+    .question-subject {
+        font-size: 11px;
+        padding: 6px 12px;
+        margin-bottom: 20px;
+    }
+    
+    .options-list {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .test-question-card {
+        padding: 15px 12px;
+    }
+    
+    .question-text {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+    
+    .option-item {
+        padding: 12px;
+    }
+    
+    .option-text {
+        font-size: 14px;
+    }
+    
+    .question-subject {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
+
+/* Mobile portrait orientation */
+@media (max-width: 768px) and (orientation: portrait) {
+    .test-question-card {
+        padding: 25px 15px;
+    }
+    
+    .question-text {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    
+    .options-list {
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+    
+    .option-item {
+        padding: 18px 15px;
+    }
+    
+    .option-text {
+        font-size: 17px;
+    }
+}

@@ -87,6 +87,13 @@ GENERAL_TEST_QUESTIONS = {
                 'Прочитанная книга лежала на столе.'
             ],
             'correct': 0
+        },
+        {
+            'id': 11,
+            'question': 'Выберите все слова с проверяемой безударной гласной в корне:',
+            'options': ['кАсаться', 'пИсать', 'мАгазин', 'кОса'],
+            'multiple': True,
+            'correct_answers': [0, 2]
         }
     ],
     'math': [
@@ -243,13 +250,20 @@ def get_all_questions():
     # Добавляем вопросы из всех предметов
     for subject, questions in GENERAL_TEST_QUESTIONS.items():
         for q in questions:
-            all_questions.append({
+            question_data = {
                 'id': question_id,
                 'subject': subject,
                 'question': q['question'],
                 'options': q['options'],
                 'correct': q['correct']
-            })
+            }
+            
+            # Обработка множественного выбора
+            if q.get('multiple'):
+                question_data['multiple'] = True
+                question_data['correct'] = q.get('correct_answers', q['correct'])
+            
+            all_questions.append(question_data)
             question_id += 1
     
     return all_questions

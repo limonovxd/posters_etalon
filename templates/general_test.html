@@ -2,6 +2,10 @@
 
 {% block title %}Общий тест - Центр подготовки ЕГЭ ОГЭ{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general_test.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Page Content -->
@@ -9,7 +13,6 @@
         <h1 class="page-title">Общий тест</h1>
         
         <div class="page-text">
-            <p>Добро пожаловать на страницу общего тестирования!</p>
             <p>Здесь вы можете пройти комплексное тестирование по различным предметам ЕГЭ и ОГЭ.</p>
         </div>
         

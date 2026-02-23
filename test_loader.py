@@ -68,6 +68,9 @@ def get_general_test():
             for q in questions:
                 q['subject'] = subject
                 q['subject_name'] = test_data.get('subject_name', subject)
+                # Автоматически определяем множественный выбор
+                if isinstance(q.get('correct'), list):
+                    q['multiple'] = True
             all_questions.extend(questions)
     
     # Перемешиваем вопросы
@@ -99,6 +102,9 @@ def get_test_questions(subject):
             for q in basic_questions:
                 q['subject'] = 'math_basic'
                 q['subject_name'] = basic_data.get('subject_name', 'Математика (базовая)')
+                # Автоматически определяем множественный выбор
+                if isinstance(q.get('correct'), list):
+                    q['multiple'] = True
             all_questions.extend(basic_questions)
         
         # Загружаем вопросы из профильной математики
@@ -108,6 +114,9 @@ def get_test_questions(subject):
             for q in profile_questions:
                 q['subject'] = 'math_profile'
                 q['subject_name'] = profile_data.get('subject_name', 'Математика (профильная)')
+                # Автоматически определяем множественный выбор
+                if isinstance(q.get('correct'), list):
+                    q['multiple'] = True
             all_questions.extend(profile_questions)
         
         # Перемешиваем вопросы
@@ -124,6 +133,9 @@ def get_test_questions(subject):
         for q in questions:
             q['subject'] = subject
             q['subject_name'] = test_data.get('subject_name', subject)
+            # Автоматически определяем множественный выбор
+            if isinstance(q.get('correct'), list):
+                q['multiple'] = True
         return questions
     
     return []

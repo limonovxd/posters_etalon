@@ -1,0 +1,237 @@
+/* Test Results Page Specific Styles */
+
+/* Results Stats */
+.results-stats {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Results Page Alert Styles */
+.results-alert {
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+}
+
+.results-alert-warning {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+.results-alert-danger {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+}
+
+.results-alert-title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.results-alert-warning .results-alert-title {
+    color: #856404;
+}
+
+.results-alert-danger .results-alert-title {
+    color: #721c24;
+}
+
+.results-alert-text {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.results-alert-warning .results-alert-text {
+    color: #856404;
+}
+
+.results-alert-danger .results-alert-text {
+    color: #721c24;
+}
+
+.results-message {
+    text-align: center;
+}
+
+.results-message-text {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+.lifehacks-recommendation {
+    background-color: #fff8e1;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    border-left: 4px solid #ff9800;
+}
+
+.lifehacks-recommendation p {
+    margin: 0 0 10px 0;
+}
+
+.lifehacks-recommendation-title {
+    color: #e65100;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.lifehacks-recommendation-text {
+    color: #f57c00;
+    font-size: 14px;
+}
+
+.lifehacks-link {
+    display: inline-block;
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.lifehacks-link:hover {
+    background-color: #f57c00;
+}
+
+.results-score {
+    font-size: 72px;
+    font-weight: bold;
+    color: #FFA500;
+    margin-bottom: 10px;
+}
+
+.results-text {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.subject-stats {
+    margin-top: 40px;
+}
+
+/* Results Page Action Buttons - Unified container with same width */
+.results-actions {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.results-actions .menu-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.results-actions .back-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Subject Stats Item */
+.subject-stat-item {
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    border-left: 4px solid #FFA500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subject-stat-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.subject-stat-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFA500;
+}
+
+/* Responsive for Results Page */
+@media (max-width: 768px) {
+    .results-score {
+        font-size: 56px;
+    }
+    
+    .results-text {
+        font-size: 20px;
+    }
+    
+    .subject-stat-item {
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .subject-stat-name {
+        font-size: 18px;
+    }
+    
+    .subject-stat-score {
+        font-size: 20px;
+    }
+    
+    /* Results Actions - Responsive */
+    .results-actions {
+        max-width: 100%;
+        margin-top: 30px;
+        gap: 12px;
+    }
+
+    .results-actions .menu-btn {
+        padding: 18px 20px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-score {
+        font-size: 48px;
+    }
+    
+    .results-text {
+        font-size: 18px;
+    }
+    
+    .subject-stat-item {
+        padding: 14px;
+    }
+    
+    .subject-stat-name {
+        font-size: 16px;
+    }
+    
+    .subject-stat-score {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    .results-score {
+        font-size: 40px;
+    }
+    
+    .results-text {
+        font-size: 16px;
+    }
+}

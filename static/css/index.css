@@ -1,0 +1,482 @@
+/* Index Page Specific Styles */
+
+/* Top Banner */
+.top-banner {
+    background-color: #000000;
+    color: #FFA500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95%;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #FFA500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.subtitle {
+    font-size: 56px;
+    font-weight: bold;
+    color: #FFA500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.exams-section {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.exam-divider {
+    font-size: 72px;
+    font-weight: bold;
+    color: #FFA500;
+    line-height: 1;
+}
+
+.exams-text {
+    font-size: 72px;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.pen-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    right: -20px;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    pointer-events: none;
+}
+
+/* Menu Section */
+.menu-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.menu-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FFA500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.menu-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Responsive - Tablet landscape */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .main-title {
+        font-size: 52px;
+    }
+    
+    .subtitle {
+        font-size: 46px;
+    }
+    
+    .exams-text {
+        font-size: 60px;
+    }
+    
+    .exam-divider {
+        font-size: 60px;
+    }
+}
+
+/* Responsive - Tablet portrait */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 48px;
+        letter-spacing: 1.5px;
+    }
+    
+    .subtitle {
+        font-size: 42px;
+        letter-spacing: 1.5px;
+    }
+    
+    .exams-text {
+        font-size: 56px;
+        letter-spacing: 3px;
+    }
+    
+    .exam-divider {
+        font-size: 56px;
+    }
+    
+    .menu-title {
+        font-size: 36px;
+        letter-spacing: 1.5px;
+    }
+    
+    .pen-icon {
+        width: 45px;
+        height: 45px;
+        top: 8px;
+        right: -15px;
+    }
+    
+    .top-banner {
+        font-size: 13px;
+        padding: 11px 20px;
+    }
+    
+    .title-section {
+        gap: 8px;
+    }
+    
+    .exams-section {
+        margin-top: 15px;
+    }
+}
+
+/* Responsive - Large mobile */
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 36px;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+    
+    .exams-text {
+        font-size: 42px;
+        letter-spacing: 2px;
+        line-height: 1.1;
+    }
+    
+    .exam-divider {
+        font-size: 42px;
+    }
+    
+    .menu-title {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+    
+    .top-banner {
+        font-size: 11px;
+        padding: 10px 16px;
+        letter-spacing: 0.5px;
+    }
+    
+    .pen-icon {
+        width: 35px;
+        height: 35px;
+        top: 5px;
+        right: -12px;
+    }
+    
+    .title-section {
+        gap: 6px;
+    }
+    
+    .exams-section {
+        margin-top: 12px;
+    }
+    
+    .menu-section {
+        gap: 15px;
+    }
+    
+    .menu-buttons {
+        gap: 12px;
+    }
+}
+
+/* Responsive - Medium mobile */
+@media (max-width: 360px) {
+    .main-title {
+        font-size: 32px;
+        letter-spacing: 0.5px;
+    }
+    
+    .subtitle {
+        font-size: 28px;
+        letter-spacing: 0.5px;
+    }
+    
+    .exams-text {
+        font-size: 36px;
+        letter-spacing: 1.5px;
+    }
+    
+    .exam-divider {
+        font-size: 36px;
+    }
+    
+    .menu-title {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+    
+    .top-banner {
+        font-size: 10px;
+        padding: 9px 14px;
+        letter-spacing: 0.3px;
+    }
+    
+    .pen-icon {
+        width: 30px;
+        height: 30px;
+        top: 3px;
+        right: -10px;
+    }
+    
+    .title-section {
+        gap: 5px;
+    }
+    
+    .exams-section {
+        margin-top: 10px;
+    }
+}
+
+/* Responsive - Small mobile */
+@media (max-width: 320px) {
+    .main-title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+    }
+    
+    .exams-text {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+    
+    .exam-divider {
+        font-size: 32px;
+    }
+    
+    .menu-title {
+        font-size: 22px;
+    }
+    
+    .top-banner {
+        font-size: 9px;
+        padding: 8px 12px;
+    }
+    
+    .pen-icon {
+        width: 28px;
+        height: 28px;
+        top: 2px;
+        right: -8px;
+    }
+}
+
+/* Responsive - Mobile landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-title {
+        font-size: 40px;
+    }
+    
+    .subtitle {
+        font-size: 36px;
+    }
+    
+    .exams-text {
+        font-size: 48px;
+    }
+    
+    .exam-divider {
+        font-size: 48px;
+    }
+    
+    .menu-title {
+        font-size: 32px;
+    }
+    
+    .top-banner {
+        font-size: 11px;
+        padding: 8px 16px;
+    }
+    
+    .title-section {
+        gap: 5px;
+    }
+    
+    .exams-section {
+        margin-top: 8px;
+    }
+}
+
+/* Responsive - Large screens */
+@media (min-width: 1200px) {
+    .main-title {
+        font-size: 72px;
+    }
+    
+    .subtitle {
+        font-size: 64px;
+    }
+    
+    .exams-text {
+        font-size: 80px;
+    }
+    
+    .exam-divider {
+        font-size: 80px;
+    }
+    
+    .menu-title {
+        font-size: 56px;
+    }
+}
+
+/* Mobile portrait orientation */
+@media (max-width: 768px) and (orientation: portrait) {
+    .main-title {
+        font-size: 42px;
+    }
+    
+    .subtitle {
+        font-size: 38px;
+    }
+    
+    .exams-text {
+        font-size: 50px;
+    }
+    
+    .exam-divider {
+        font-size: 50px;
+    }
+    
+    .title-section {
+        gap: 8px;
+    }
+    
+    .pen-icon {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: rotate(45deg);
+        margin-top: 10px;
+    }
+    
+    .top-banner {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+    
+    .menu-section {
+        padding-top: 15px;
+        gap: 15px;
+    }
+    
+    .menu-title {
+        font-size: 32px;
+    }
+    
+    .menu-buttons {
+        gap: 12px;
+    }
+}
+
+/* Ultra small mobile portrait */
+@media (max-width: 360px) and (orientation: portrait) {
+    .main-title {
+        font-size: 34px;
+    }
+    
+    .subtitle {
+        font-size: 30px;
+    }
+    
+    .exams-text {
+        font-size: 38px;
+    }
+    
+    .exam-divider {
+        font-size: 38px;
+    }
+    
+    .menu-title {
+        font-size: 26px;
+    }
+    
+    .top-banner {
+        font-size: 10px;
+        padding: 8px 14px;
+    }
+}
+
+/* Very small mobile portrait */
+@media (max-width: 320px) and (orientation: portrait) {
+    .main-title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+    }
+    
+    .exams-text {
+        font-size: 32px;
+    }
+    
+    .exam-divider {
+        font-size: 32px;
+    }
+    
+    .menu-title {
+        font-size: 22px;
+    }
+    
+    .top-banner {
+        font-size: 9px;
+        padding: 7px 12px;
+    }
+}

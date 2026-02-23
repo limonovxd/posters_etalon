@@ -1,22 +1,22 @@
 {% extends "includes/base.html" %}
 
-{% block title %}Лайфхаки и факты - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+{% block title %}Советы - Центр подготовки ЕГЭ ОГЭ{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lifehacks.css') }}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
     <!-- Page Content -->
     <div class="page-content lifehacks-page">
-        <h1 class="page-title">Лайфхаки и факты</h1>
+        <h1 class="page-title">Советы</h1>
         
         <div class="lifehacks-container">
             <!-- Card Container -->
             <div class="card-container">
                 <div class="lifehack-card" id="lifehackCard">
                     <div class="card-header">
-                        <span class="card-type" id="cardType">
-                            <span class="type-icon">💡</span>
-                            <span class="type-text">Лайфхак</span>
-                        </span>
                         <span class="card-category" id="cardCategory">Подготовка</span>
                     </div>
                     <h2 class="card-title" id="cardTitle">Загрузка...</h2>
@@ -25,7 +25,7 @@
                 
                 <!-- Progress Indicator -->
                 <div class="progress-indicator">
-                    <span id="currentIndex">1</span> / <span id="totalCount">30</span>
+                    <span id="currentIndex">1</span> / <span id="totalCount">14</span>
                 </div>
                 
                 <!-- Swipe Hint -->
@@ -51,40 +51,17 @@
     
     // DOM Elements
     const card = document.getElementById('lifehackCard');
-    const cardType = document.getElementById('cardType');
     const cardCategory = document.getElementById('cardCategory');
     const cardTitle = document.getElementById('cardTitle');
     const cardContent = document.getElementById('cardContent');
     const currentIndexEl = document.getElementById('currentIndex');
     const totalCountEl = document.getElementById('totalCount');
     
-    // Type mappings
-    const typeConfig = {
-        'lifehack': {
-            icon: '💡',
-            text: 'Лайфхак',
-            class: 'type-lifehack'
-        },
-        'fact': {
-            icon: '📚',
-            text: 'Факт',
-            class: 'type-fact'
-        }
-    };
-    
     const categoryNames = {
         'preparation': 'Подготовка',
         'study': 'Учёба',
         'exam': 'На экзамене',
-        'health': 'Здоровье',
-        'logistics': 'Организация',
-        'ege-history': 'История ЕГЭ',
-        'statistics': 'Статистика',
-        'rules': 'Правила',
-        'basics': 'Основы',
-        'changes': 'Изменения',
-        'structure': 'Структура',
-        'admissions': 'Поступление'
+        'health': 'Здоровье'
     };
     
     // Initialize
@@ -122,17 +99,6 @@
         currentIndexEl.textContent = index + 1;
         
         // Update card content
-        const typeInfo = typeConfig[item.type] || typeConfig.lifehack;
-        
-        // Remove old type class
-        cardType.classList.remove('type-lifehack', 'type-fact');
-        
-        cardType.innerHTML = `
-            <span class="type-icon">${typeInfo.icon}</span>
-            <span class="type-text">${typeInfo.text}</span>
-        `;
-        cardType.classList.add(typeInfo.class);
-        
         cardCategory.textContent = categoryNames[item.category] || item.category;
         cardTitle.textContent = item.title;
         cardContent.textContent = item.content;

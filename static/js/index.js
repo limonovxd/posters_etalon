@@ -1,5 +1,5 @@
 
-// Обработчики для кнопок меню (общие для всех страниц)
+// Обработчики для кнопок меню (используются на главной странице)
 function handleGeneralTest() {
     window.location.href = '/general-test';
 }
@@ -12,7 +12,7 @@ function handleLifehacks() {
     window.location.href = '/lifehacks';
 }
 
-// Анимация при загрузке страницы (общая для всех страниц)
+// Анимация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container');
     if (container) {

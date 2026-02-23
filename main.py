@@ -75,15 +75,31 @@ def submit_answer():
         return redirect(url_for('test_results'))
     
     question = questions[current]
-    user_answer = int(request.form.get('answer', -1))
+    
+    # Проверяем множественный выбор (checkbox) или одиночный (radio)
+    if question.get('multiple'):
+        # Получаем все выбранные ответы
+        user_answers = request.form.getlist('answer')
+        user_answer = [int(a) for a in user_answers] if user_answers else []
+        correct_answer = question['correct']
+        
+        # Для множественного выбора сравниваем списки
+        if isinstance(correct_answer, list):
+            is_correct = sorted(user_answer) == sorted(correct_answer)
+        else:
+            is_correct = False
+    else:
+        user_answer = int(request.form.get('answer', -1))
+        correct_answer = question['correct']
+        is_correct = user_answer == correct_answer
     
     # Сохраняем ответ
     answers = session.get('answers', [])
     answers.append({
         'question_id': question['id'],
         'user_answer': user_answer,
-        'correct_answer': question['correct'],
-        'is_correct': user_answer == question['correct']
+        'correct_answer': correct_answer,
+        'is_correct': is_correct
     })
     session['answers'] = answers
     
@@ -128,7 +144,13 @@ def test_results():
     # Флаг досрочного завершения
     finished_early = total_answered < total_questions
     
-    # Всегда рекомендуем лайфхаки
+    # Процент правильных ответов
+    percentage = (correct / total_questions) * 100 if total_questions > 0 else 0
+    
+    # Флаг проваленного теста (меньше 75%)
+    is_failed = percentage < 75
+    
+    # Всегда рекомендуем советы
     show_lifehacks_recommendation = True
     
     # Результаты по предметам
@@ -174,6 +196,8 @@ def test_results():
                          total=total_answered,
                          total_questions=total_questions,
                          correct=correct,
+                         percentage=percentage,
+                         is_failed=is_failed,
                          subject_stats=formatted_stats,
                          answers=answers,
                          questions=questions,
@@ -224,7 +248,7 @@ def lifehacks():
 
 @app.route("/api/lifehacks")
 def api_lifehacks():
-    """Возвращает все лайфхаки и факты в формате JSON"""
+    """Возвращает все лайфхаки в формате JSON"""
     data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
     try:
         with open(data_path, 'r', encoding='utf-8') as f:
@@ -235,7 +259,7 @@ def api_lifehacks():
 
 @app.route("/api/lifehacks/random")
 def api_lifehacks_random():
-    """Возвращает один случайный лайфхак или факт"""
+    """Возвращает один случайный лайфхак"""
     data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
     try:
         with open(data_path, 'r', encoding='utf-8') as f:
@@ -249,7 +273,7 @@ def api_lifehacks_random():
 
 @app.route("/api/lifehacks/<int:item_id>")
 def api_lifehacks_item(item_id):
-    """Возвращает конкретный лайфхак или факт по ID"""
+    """Возвращает конкретный совет по ID"""
     data_path = os.path.join(os.path.dirname(__file__), 'data', 'lifehacks.json')
     try:
         with open(data_path, 'r', encoding='utf-8') as f:

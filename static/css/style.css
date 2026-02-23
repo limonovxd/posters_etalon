@@ -1,3 +1,6 @@
+/* Common Styles - Shared across all pages */
+
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -33,116 +36,6 @@ body {
     border-radius: 0;
 }
 
-/* Top Banner */
-.top-banner {
-    background-color: #000000;
-    color: #FFA500;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transform: rotate(-2deg);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 95%;
-}
-
-/* Title Section */
-.title-section {
-    text-align: center;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.main-title {
-    font-size: 64px;
-    font-weight: bold;
-    color: #FFA500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1;
-}
-
-.subtitle {
-    font-size: 56px;
-    font-weight: bold;
-    color: #FFA500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1;
-}
-
-.exams-section {
-    position: relative;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.exam-divider {
-    font-size: 72px;
-    font-weight: bold;
-    color: #FFA500;
-    line-height: 1;
-}
-
-.exams-text {
-    font-size: 72px;
-    font-weight: bold;
-    color: #000000;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    line-height: 1.2;
-    display: inline-block;
-}
-
-.pen-icon {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    top: 10px;
-    right: -20px;
-    transform: rotate(45deg);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    pointer-events: none;
-}
-
-/* Menu Section */
-.menu-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 20px;
-}
-
-.menu-title {
-    font-size: 48px;
-    font-weight: bold;
-    color: #FFA500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.menu-buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
 /* Test Actions Container - for uniform button sizing */
 .test-actions {
     width: 100%;
@@ -168,6 +61,7 @@ body {
     text-align: center;
 }
 
+/* Button Styles */
 .menu-btn {
     width: 100%;
     padding: 20px 30px;
@@ -237,11 +131,18 @@ body {
 }
 
 .finish-early-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
     background-color: #f44336 !important;
     color: white !important;
-    font-size: 14px;
-    padding: 8px 16px;
     border: none;
+    padding: 20px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 12px;
 }
 
 .finish-early-btn:hover {
@@ -262,7 +163,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -361,16 +262,80 @@ body {
     font-size: 18px;
 }
 
-/* Page Content Styles */
-.page-content {
-    width: 100%;
-    max-width: 800px;
-    padding: 30px 20px;
-    background-color: transparent;
-    border-radius: 16px;
-    margin-bottom: 30px;
+/* Validation Message Styles - Full Screen Modal */
+.validation-message {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
 }
 
+.validation-message.visible {
+    display: flex;
+}
+
+.validation-message .modal-content {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    padding: 30px;
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+.validation-text {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.validation-btn {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.validation-btn:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+/* Finish Modal Container */
+.finish-modal-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Modal visible state */
+.modal-overlay.modal-visible {
+    display: flex;
+}
+
+/* Body scroll lock */
+body.modal-open {
+    overflow: hidden !important;
+}
+
+/* Page Title (used in multiple pages) */
 .page-title {
     font-size: 48px;
     font-weight: bold;
@@ -381,220 +346,7 @@ body {
     text-align: center;
 }
 
-.page-subtitle {
-    font-size: 24px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 20px;
-    margin-top: 30px;
-}
-
-.page-text {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333333;
-    margin-bottom: 20px;
-}
-
-.content-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.content-list li {
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    border-left: 4px solid #FFA500;
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-/* Test Question Styles */
-.test-progress {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #FFA500, #FF8C00);
-    border-radius: 5px;
-    transition: width 0.3s ease;
-    width: var(--progress, 0%);
-}
-
-.progress-text {
-    text-align: center;
-    font-size: 16px;
-    color: #666;
-    font-weight: bold;
-}
-
-.test-question-card {
-    padding: 40px 30px;
-}
-
-.question-subject {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #FFA500;
-    color: #000;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
-}
-
-.question-text {
-    font-size: 28px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 30px;
-    line-height: 1.4;
-}
-
-.question-form {
-    width: 100%;
-}
-
-.options-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-.option-item {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.option-item:hover {
-    background-color: #f0f0f0;
-    border-color: #FFA500;
-    transform: translateX(5px);
-}
-
-.option-item input[type="radio"] {
-    width: 24px;
-    height: 24px;
-    margin-right: 15px;
-    cursor: pointer;
-    accent-color: #FFA500;
-}
-
-.option-item input[type="radio"]:checked + .option-text {
-    color: #FFA500;
-    font-weight: bold;
-}
-
-.option-item:has(input[type="radio"]:checked) {
-    background-color: #fff5e6;
-    border-color: #FFA500;
-}
-
-.option-text {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.5;
-    flex: 1;
-}
-
-.question-actions {
-    text-align: center;
-}
-
-/* Results Styles */
-.results-stats {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.results-score {
-    font-size: 72px;
-    font-weight: bold;
-    color: #FFA500;
-    margin-bottom: 10px;
-}
-
-.results-text {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.subject-stats {
-    margin-top: 40px;
-}
-
-/* Results Page Action Buttons - Unified container with same width */
-.results-actions {
-    width: 100%;
-    max-width: 400px;
-    margin: 40px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.results-actions .menu-btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.results-actions .back-btn {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-}
-
-.subject-stat-item {
-    padding: 20px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    border-left: 4px solid #FFA500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.subject-stat-name {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-}
-
-.subject-stat-score {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFA500;
-}
-
-/* Responsive Design */
+/* Responsive Design - Common */
 
 /* Планшеты в landscape */
 @media (max-width: 1024px) and (orientation: landscape) {
@@ -603,22 +355,6 @@ body {
         gap: 25px;
         max-width: 900px;
     }
-    
-    .main-title {
-        font-size: 52px;
-    }
-    
-    .subtitle {
-        font-size: 46px;
-    }
-    
-    .exams-text {
-        font-size: 60px;
-    }
-    
-    .exam-divider {
-        font-size: 60px;
-    }
 }
 
 /* Планшеты в portrait */
@@ -626,56 +362,6 @@ body {
     .container {
         padding: 20px 15px;
         gap: 25px;
-    }
-    
-    .main-title {
-        font-size: 48px;
-        letter-spacing: 1.5px;
-    }
-    
-    .subtitle {
-        font-size: 42px;
-        letter-spacing: 1.5px;
-    }
-    
-    .exams-text {
-        font-size: 56px;
-        letter-spacing: 3px;
-    }
-    
-    .exam-divider {
-        font-size: 56px;
-    }
-    
-    .menu-title {
-        font-size: 36px;
-        letter-spacing: 1.5px;
-    }
-    
-    .menu-btn {
-        font-size: 20px;
-        padding: 18px 24px;
-        min-height: 56px; /* Touch-friendly */
-    }
-    
-    .pen-icon {
-        width: 45px;
-        height: 45px;
-        top: 8px;
-        right: -15px;
-    }
-    
-    .top-banner {
-        font-size: 13px;
-        padding: 11px 20px;
-    }
-    
-    .title-section {
-        gap: 8px;
-    }
-    
-    .exams-section {
-        margin-top: 15px;
     }
 }
 
@@ -689,65 +375,11 @@ body {
         padding-bottom: 30px;
     }
     
-    .main-title {
-        font-size: 36px;
-        letter-spacing: 1px;
-    }
-    
-    .subtitle {
-        font-size: 32px;
-        letter-spacing: 1px;
-    }
-    
-    .exams-text {
-        font-size: 42px;
-        letter-spacing: 2px;
-        line-height: 1.1;
-    }
-    
-    .exam-divider {
-        font-size: 42px;
-    }
-    
-    .menu-title {
-        font-size: 28px;
-        letter-spacing: 1px;
-    }
-    
     .menu-btn {
         font-size: 18px;
         padding: 16px 20px;
         min-height: 52px;
         letter-spacing: 0.5px;
-    }
-    
-    .top-banner {
-        font-size: 11px;
-        padding: 10px 16px;
-        letter-spacing: 0.5px;
-    }
-    
-    .pen-icon {
-        width: 35px;
-        height: 35px;
-        top: 5px;
-        right: -12px;
-    }
-    
-    .title-section {
-        gap: 6px;
-    }
-    
-    .exams-section {
-        margin-top: 12px;
-    }
-    
-    .menu-section {
-        gap: 15px;
-    }
-    
-    .menu-buttons {
-        gap: 12px;
     }
 }
 
@@ -760,56 +392,11 @@ body {
         padding-bottom: 25px;
     }
     
-    .main-title {
-        font-size: 32px;
-        letter-spacing: 0.5px;
-    }
-    
-    .subtitle {
-        font-size: 28px;
-        letter-spacing: 0.5px;
-    }
-    
-    .exams-text {
-        font-size: 36px;
-        letter-spacing: 1.5px;
-    }
-    
-    .exam-divider {
-        font-size: 36px;
-    }
-    
-    .menu-title {
-        font-size: 24px;
-        letter-spacing: 0.5px;
-    }
-    
     .menu-btn {
         font-size: 16px;
         padding: 14px 18px;
         min-height: 48px;
         border-radius: 10px;
-    }
-    
-    .top-banner {
-        font-size: 10px;
-        padding: 9px 14px;
-        letter-spacing: 0.3px;
-    }
-    
-    .pen-icon {
-        width: 30px;
-        height: 30px;
-        top: 3px;
-        right: -10px;
-    }
-    
-    .title-section {
-        gap: 5px;
-    }
-    
-    .exams-section {
-        margin-top: 10px;
     }
 }
 
@@ -820,43 +407,10 @@ body {
         gap: 15px;
     }
     
-    .main-title {
-        font-size: 28px;
-    }
-    
-    .subtitle {
-        font-size: 24px;
-    }
-    
-    .exams-text {
-        font-size: 32px;
-        letter-spacing: 1px;
-    }
-    
-    .exam-divider {
-        font-size: 32px;
-    }
-    
-    .menu-title {
-        font-size: 22px;
-    }
-    
     .menu-btn {
         font-size: 15px;
         padding: 12px 16px;
         min-height: 44px;
-    }
-    
-    .top-banner {
-        font-size: 9px;
-        padding: 8px 12px;
-    }
-    
-    .pen-icon {
-        width: 28px;
-        height: 28px;
-        top: 2px;
-        right: -8px;
     }
 }
 
@@ -868,44 +422,6 @@ body {
         min-height: auto;
         justify-content: center;
     }
-    
-    .main-title {
-        font-size: 40px;
-    }
-    
-    .subtitle {
-        font-size: 36px;
-    }
-    
-    .exams-text {
-        font-size: 48px;
-    }
-    
-    .exam-divider {
-        font-size: 48px;
-    }
-    
-    .menu-title {
-        font-size: 32px;
-    }
-    
-    .menu-btn {
-        font-size: 18px;
-        padding: 14px 20px;
-    }
-    
-    .top-banner {
-        font-size: 11px;
-        padding: 8px 16px;
-    }
-    
-    .title-section {
-        gap: 5px;
-    }
-    
-    .exams-section {
-        margin-top: 8px;
-    }
 }
 
 /* Большие экраны */
@@ -914,742 +430,11 @@ body {
         max-width: 700px;
     }
     
-    .main-title {
-        font-size: 72px;
-    }
-    
-    .subtitle {
-        font-size: 64px;
-    }
-    
-    .exams-text {
-        font-size: 80px;
-    }
-    
-    .exam-divider {
-        font-size: 80px;
-    }
-    
-    .menu-title {
-        font-size: 56px;
-    }
-    
     .menu-btn {
         font-size: 28px;
         padding: 24px 36px;
     }
 }
-
-/* Адаптивные стили для контентных страниц */
-@media (max-width: 768px) {
-    .page-content {
-        padding: 20px 15px;
-    }
-    
-    .page-title {
-        font-size: 36px;
-    }
-    
-    .page-subtitle {
-        font-size: 20px;
-    }
-    
-    .page-text {
-        font-size: 16px;
-    }
-    
-    .content-list li {
-        font-size: 16px;
-        padding: 12px;
-    }
-    
-    .back-btn {
-        font-size: 16px;
-        padding: 10px 20px;
-    }
-    
-    /* Test Question Styles */
-    .test-question-card {
-        padding: 30px 20px;
-    }
-    
-    .question-text {
-        font-size: 24px;
-    }
-    
-    .option-item {
-        padding: 16px;
-    }
-    
-    .option-text {
-        font-size: 16px;
-    }
-    
-    .question-subject {
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-    
-    .results-score {
-        font-size: 56px;
-    }
-    
-    .results-text {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .page-content {
-        padding: 15px 12px;
-    }
-    
-    .page-title {
-        font-size: 28px;
-        letter-spacing: 1px;
-    }
-    
-    .page-subtitle {
-        font-size: 18px;
-        margin-top: 25px;
-        margin-bottom: 15px;
-    }
-    
-    .page-text {
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .content-list {
-        margin: 15px 0;
-    }
-    
-    .content-list li {
-        font-size: 15px;
-        padding: 12px;
-        margin-bottom: 12px;
-    }
-    
-    .back-btn {
-        font-size: 15px;
-        padding: 10px 18px;
-    }
-    
-    /* Test Question Styles */
-    .test-question-card {
-        padding: 20px 15px;
-    }
-    
-    .question-text {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .option-item {
-        padding: 14px;
-        margin-bottom: 12px;
-    }
-    
-    .option-text {
-        font-size: 15px;
-    }
-    
-    .question-subject {
-        font-size: 11px;
-        padding: 6px 12px;
-        margin-bottom: 20px;
-    }
-    
-    .options-list {
-        margin-bottom: 30px;
-    }
-    
-    .results-score {
-        font-size: 48px;
-    }
-    
-    .results-text {
-        font-size: 18px;
-    }
-    
-    .subject-stat-item {
-        padding: 16px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .subject-stat-name {
-        font-size: 18px;
-    }
-    
-    .subject-stat-score {
-        font-size: 20px;
-    }
-    
-    /* Modal Styles */
-    .modal-title {
-        font-size: 22px;
-    }
-    
-    .modal-body {
-        padding: 20px 15px;
-    }
-    
-    .modal-body p {
-        font-size: 15px;
-    }
-    
-    .modal-header {
-        padding: 20px 20px 15px;
-    }
-    
-    .modal-footer {
-        padding: 15px 20px 20px;
-    }
-}
-
-@media (max-width: 360px) {
-    .page-content {
-        padding: 12px 10px;
-    }
-    
-    .page-title {
-        font-size: 24px;
-        letter-spacing: 0.5px;
-    }
-    
-    .page-subtitle {
-        font-size: 16px;
-    }
-    
-    .page-text {
-        font-size: 14px;
-    }
-    
-    .content-list li {
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-    .back-btn {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-    
-    /* Test Question Styles */
-    .test-question-card {
-        padding: 15px 12px;
-    }
-    
-    .question-text {
-        font-size: 18px;
-        margin-bottom: 18px;
-    }
-    
-    .option-item {
-        padding: 12px;
-    }
-    
-    .option-text {
-        font-size: 14px;
-    }
-    
-    .question-subject {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-    
-    .results-score {
-        font-size: 40px;
-    }
-    
-    .results-text {
-        font-size: 16px;
-    }
-}
-
-/* Uniform subject card sizes on mobile portrait orientation */
-@media (max-width: 768px) and (orientation: portrait) {
-    .subjects-list {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .subjects-list form {
-        width: 100% !important;
-        margin-bottom: 0 !important;
-    }
-
-    .subjects-list .menu-btn {
-        width: 100% !important;
-        min-height: 90px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .subjects-list .menu-btn .subject-btn-content {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .subjects-list .menu-btn .subject-count {
-        margin-left: 0 !important;
-    }
-}
-
-/* Subject Buttons Styles - Centered with count below subject name */
-.subjects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    align-items: center;
-}
-
-.subjects-list form {
-    width: 100%;
-    max-width: 500px;
-}
-
-.subjects-list .menu-btn {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px 20px;
-    text-align: center;
-    min-height: 100px;
-}
-
-.subjects-list .subject-name {
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.subjects-list .subject-count {
-    font-size: 0.9em;
-    opacity: 0.7;
-}
-
-/* Responsive for subject buttons */
-@media (max-width: 768px) {
-    .subjects-list form {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .subjects-list .menu-btn {
-        padding: 20px 15px;
-        min-height: 80px;
-    }
-    
-    .subjects-list .subject-name {
-        font-size: 0.95em;
-        margin-bottom: 6px;
-    }
-    
-    .subjects-list .subject-count {
-        font-size: 0.8em;
-    }
-}
-
-@media (max-width: 480px) {
-    .subjects-list .menu-btn {
-        padding: 18px 15px;
-        min-height: 80px;
-    }
-    
-    .subjects-list .subject-name {
-        font-size: 0.9em;
-        margin-bottom: 5px;
-    }
-    
-    .subjects-list .subject-count {
-        font-size: 0.75em;
-    }
-}
-
-@media (max-width: 390px) {
-    .subjects-list .menu-btn {
-        padding: 16px 12px;
-        min-height: 80px;
-    }
-}
-
-/* Lifehacks Page Styles */
-.lifehacks-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.lifehacks-container {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.lifehack-card {
-    width: 100%;
-    min-height: 400px;
-    max-height: 500px;
-    background-color: transparent;
-    border-radius: 20px;
-    padding: 30px 25px;
-    border: 1px solid rgba(255, 165, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: grab;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.lifehack-card:hover {
-    transform: translateY(-2px);
-}
-
-.lifehack-card:active {
-    cursor: grabbing;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid rgba(255, 165, 0, 0.15);
-}
-
-.card-type {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.type-icon {
-    font-size: 16px;
-}
-
-.type-text {
-    color: #000;
-}
-
-.type-lifehack {
-    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-    border: 2px solid #FFB74D;
-}
-
-.type-fact {
-    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-    border: 2px solid #64B5F6;
-}
-
-.card-category {
-    font-size: 12px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-    padding: 6px 12px;
-    background-color: #f5f5f5;
-    border-radius: 15px;
-}
-
-.card-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 20px;
-    line-height: 1.3;
-    text-align: left;
-    flex-shrink: 0;
-}
-
-.card-content {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #444;
-    text-align: left;
-    flex: 1;
-    overflow-y: auto;
-}
-
-.progress-indicator {
-    font-size: 16px;
-    color: #888;
-    font-weight: 500;
-    padding: 8px 20px;
-    background-color: rgba(255, 165, 0, 0.1);
-    border-radius: 20px;
-}
-
-.card-actions {
-    display: flex;
-    gap: 15px;
-    width: 100%;
-    justify-content: center;
-}
-
-.action-btn {
-    padding: 14px 24px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    user-select: none;
-}
-
-.action-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none !important;
-}
-
-.action-btn-primary {
-    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-    color: #000;
-}
-
-.action-btn-primary:hover:not(:disabled) {
-    background: linear-gradient(135deg, #FFB733 0%, #FFA500 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 165, 0, 0.35);
-}
-
-.action-btn-secondary {
-    background: #ffffff;
-    color: #000;
-    border: 2px solid #e0e0e0;
-}
-
-.action-btn-secondary:hover:not(:disabled) {
-    background: #f5f5f5;
-    border-color: #FFA500;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.swipe-hint {
-    font-size: 13px;
-    color: #aaa;
-    text-align: center;
-    margin-top: 10px;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-.back-btn-container {
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-/* Card animations - optimized with translate3d for hardware acceleration */
-@keyframes slideOutLeft {
-    from {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        opacity: 0;
-        transform: translate3d(-100px, 0, 0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translate3d(100px, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        opacity: 0;
-        transform: translate3d(100px, 0, 0);
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translate3d(-100px, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* Responsive for lifehacks page */
-@media (max-width: 768px) {
-    .lifehacks-container {
-        max-width: 100%;
-    }
-    
-    .lifehack-card {
-        padding: 25px 20px;
-        min-height: 380px;
-        max-height: 480px;
-    }
-    
-    .card-title {
-        font-size: 22px;
-    }
-    
-    .card-content {
-        font-size: 16px;
-    }
-    
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    
-    .card-type {
-        font-size: 13px;
-        padding: 6px 14px;
-    }
-    
-    .card-category {
-        font-size: 11px;
-    }
-    
-    .action-btn {
-        padding: 12px 20px;
-        font-size: 15px;
-    }
-    
-    .progress-indicator {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .lifehack-card {
-        padding: 20px 16px;
-        border-radius: 16px;
-        min-height: 350px;
-        max-height: 450px;
-    }
-    
-    .card-title {
-        font-size: 20px;
-        margin-bottom: 16px;
-    }
-    
-    .card-content {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-    
-    .card-actions {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .action-btn {
-        width: 100%;
-        padding: 14px 20px;
-    }
-    
-    .swipe-hint {
-        font-size: 12px;
-    }
-    
-    .page-title {
-        font-size: 26px;
-        margin-bottom: 25px;
-    }
-}
-
-@media (max-width: 360px) {
-    .lifehack-card {
-        padding: 18px 14px;
-        min-height: 340px;
-        max-height: 420px;
-    }
-    
-    .card-title {
-        font-size: 18px;
-    }
-    
-    .card-content {
-        font-size: 14px;
-    }
-    
-    .card-type {
-        font-size: 12px;
-        padding: 5px 12px;
-    }
-    
-    .type-icon {
-        font-size: 14px;
-    }
-    
-    .card-category {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-}
-
-/* ===========================================
-   ОРИЕНТАЦИЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ
-   =========================================== */
 
 /* ПОРТРЕТНАЯ ОРИЕНТАЦИЯ (телефон вертикально) */
 @media (max-width: 768px) and (orientation: portrait) {
@@ -1658,53 +443,6 @@ body {
         justify-content: flex-start;
         padding-top: 20px;
         min-height: auto;
-    }
-    
-    .main-title {
-        font-size: 42px;
-    }
-    
-    .subtitle {
-        font-size: 38px;
-    }
-    
-    .exams-text {
-        font-size: 50px;
-    }
-    
-    .exam-divider {
-        font-size: 50px;
-    }
-    
-    .title-section {
-        gap: 8px;
-    }
-    
-    .exams-section {
-        flex-direction: row;
-        gap: 5px;
-    }
-    
-    .pen-icon {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: rotate(45deg);
-        margin-top: 10px;
-    }
-    
-    .top-banner {
-        font-size: 12px;
-        padding: 10px 20px;
-    }
-    
-    .menu-section {
-        padding-top: 15px;
-        gap: 15px;
-    }
-    
-    .menu-title {
-        font-size: 32px;
     }
     
     .menu-buttons {
@@ -1717,68 +455,6 @@ body {
         min-height: 60px;
     }
     
-    /* Страница контента */
-    .page-content {
-        padding: 20px 15px;
-        margin-bottom: 20px;
-    }
-    
-    .page-title {
-        font-size: 32px;
-        margin-bottom: 25px;
-    }
-    
-    /* Карточки вопросов */
-    .test-question-card {
-        padding: 25px 15px;
-    }
-    
-    .question-text {
-        font-size: 22px;
-        margin-bottom: 25px;
-    }
-    
-    .options-list {
-        gap: 12px;
-        margin-bottom: 30px;
-    }
-    
-    .option-item {
-        padding: 18px 15px;
-    }
-    
-    .option-text {
-        font-size: 17px;
-    }
-    
-    /* Страница лайфхаков */
-    .lifehack-card {
-        padding: 25px 20px;
-        border-radius: 18px;
-        min-height: 380px;
-        max-height: 480px;
-    }
-    
-    .card-title {
-        font-size: 22px;
-    }
-    
-    .card-content {
-        font-size: 17px;
-        line-height: 1.6;
-    }
-    
-    .card-actions {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .action-btn {
-        width: 100%;
-        padding: 16px 20px;
-    }
-    
-    /* Модальные окна */
     .modal-content {
         width: 95%;
         border-radius: 12px;
@@ -1819,20 +495,10 @@ body {
         font-size: 16px;
     }
     
-    /* Результаты тестов */
-    .results-score {
-        font-size: 60px;
-    }
-    
-    .results-text {
-        font-size: 22px;
-    }
-    
-    /* Кнопка назад */
     .back-btn {
         width: 100%;
         justify-content: center;
-        padding: 14px 20px;
+        padding: 18px 20px;
         font-size: 16px;
     }
     
@@ -1842,7 +508,15 @@ body {
     }
 }
 
-
+@media (max-width: 480px) {
+    .validation-message {
+        padding: 20px;
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+        height: 100dvh;
+        height: -webkit-fill-available;
+    }
+}
 
 /* Ультра маленькие телефоны в портретной ориентации */
 @media (max-width: 360px) and (orientation: portrait) {
@@ -1850,64 +524,10 @@ body {
         padding: 12px 10px;
     }
     
-    .main-title {
-        font-size: 34px;
-    }
-    
-    .subtitle {
-        font-size: 30px;
-    }
-    
-    .exams-text {
-        font-size: 38px;
-    }
-    
-    .exam-divider {
-        font-size: 38px;
-    }
-    
-    .menu-title {
-        font-size: 26px;
-    }
-    
     .menu-btn {
         padding: 16px 18px;
         font-size: 18px;
         min-height: 56px;
-    }
-    
-    .top-banner {
-        font-size: 10px;
-        padding: 8px 14px;
-    }
-    
-    .page-title {
-        font-size: 26px;
-    }
-    
-    .question-text {
-        font-size: 18px;
-    }
-    
-    .option-text {
-        font-size: 15px;
-    }
-    
-    .lifehack-card {
-        padding: 20px 15px;
-    }
-    
-    .card-title {
-        font-size: 18px;
-    }
-    
-    .card-content {
-        font-size: 15px;
-    }
-    
-    .action-btn {
-        padding: 14px 18px;
-        font-size: 14px;
     }
 }
 
@@ -1917,81 +537,37 @@ body {
         padding: 10px 8px;
     }
     
-    .main-title {
-        font-size: 28px;
-    }
-    
-    .subtitle {
-        font-size: 24px;
-    }
-    
-    .exams-text {
-        font-size: 32px;
-    }
-    
-    .exam-divider {
-        font-size: 32px;
-    }
-    
-    .menu-title {
-        font-size: 22px;
-    }
-    
     .menu-btn {
         padding: 14px 16px;
         font-size: 16px;
         min-height: 52px;
     }
-    
-    .top-banner {
-        font-size: 9px;
-        padding: 7px 12px;
-    }
-    
-    .page-title {
-        font-size: 22px;
-    }
-    
-    .question-text {
-        font-size: 16px;
-    }
-    
-    .option-item {
-        padding: 14px 12px;
-    }
-    
-    .option-text {
-        font-size: 14px;
-    }
-    
-    .lifehack-card {
-        padding: 16px 12px;
-        min-height: 320px;
-        max-height: 400px;
-    }
-    
-    .card-title {
-        font-size: 16px;
-    }
-    
-    .card-content {
-        font-size: 13px;
-    }
-    
-    .results-score {
-        font-size: 48px;
-    }
+}
 
-    /* Results Actions - Responsive */
-    .results-actions {
-        max-width: 100%;
-        margin-top: 30px;
-        gap: 12px;
-    }
+/* Page Content Common Styles */
+.page-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 30px 20px;
+    background-color: transparent;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
 
-    .results-actions .menu-btn {
-        padding: 18px 20px;
-        font-size: 18px;
+@media (max-width: 768px) {
+    .page-content {
+        padding: 20px 15px;
     }
 }
 
+@media (max-width: 480px) {
+    .page-content {
+        padding: 15px 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .page-content {
+        padding: 12px 10px;
+    }
+}
