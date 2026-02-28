@@ -43,18 +43,6 @@
         </div>
         {% endif %}
         
-        {% if subject_stats %}
-        <div class="subject-stats">
-            <h2 class="page-subtitle">Результаты по предметам:</h2>
-            {% for stat in subject_stats %}
-            <div class="subject-stat-item">
-                <div class="subject-stat-name">{{ stat.name }}</div>
-                <div class="subject-stat-score">{{ stat.correct }}/{{ stat.total }}</div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        
         <!-- Unified Action Buttons - Same width, different styles -->
         <div class="results-actions">
             <a href="{{ url_for('general_test') }}" class="menu-btn btn-primary">

@@ -115,10 +115,6 @@
     margin-bottom: 20px;
 }
 
-.subject-stats {
-    margin-top: 40px;
-}
-
 /* Results Page Action Buttons - Unified container with same width */
 .results-actions {
     width: 100%;
@@ -142,30 +138,6 @@
     text-align: center;
 }
 
-/* Subject Stats Item */
-.subject-stat-item {
-    padding: 20px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    border-left: 4px solid #FFA500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.subject-stat-name {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-}
-
-.subject-stat-score {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFA500;
-}
-
 /* Responsive for Results Page */
 @media (max-width: 768px) {
     .results-score {
@@ -173,21 +145,6 @@
     }
     
     .results-text {
-        font-size: 20px;
-    }
-    
-    .subject-stat-item {
-        padding: 16px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .subject-stat-name {
-        font-size: 18px;
-    }
-    
-    .subject-stat-score {
         font-size: 20px;
     }
     
@@ -210,18 +167,6 @@
     }
     
     .results-text {
-        font-size: 18px;
-    }
-    
-    .subject-stat-item {
-        padding: 14px;
-    }
-    
-    .subject-stat-name {
-        font-size: 16px;
-    }
-    
-    .subject-stat-score {
         font-size: 18px;
     }
 }

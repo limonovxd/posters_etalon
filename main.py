@@ -153,39 +153,6 @@ def test_results():
     # Всегда рекомендуем советы
     show_lifehacks_recommendation = True
     
-    # Результаты по предметам
-    subject_stats = {}
-    
-    for ans in answers:
-        # Находим вопрос по ID
-        question = None
-        for q in questions:
-            if q['id'] == ans['question_id']:
-                question = q
-                break
-        
-        if question:
-            subject = question.get('subject', 'unknown')
-            subject_name = question.get('subject_name', subject)
-            if subject not in subject_stats:
-                subject_stats[subject] = {
-                    'total': 0, 
-                    'correct': 0,
-                    'name': subject_name
-                }
-            subject_stats[subject]['total'] += 1
-            if ans['is_correct']:
-                subject_stats[subject]['correct'] += 1
-    
-    # Форматируем статистику по предметам
-    formatted_stats = []
-    for subject, stats in subject_stats.items():
-        formatted_stats.append({
-            'name': stats.get('name', subject),
-            'correct': stats['correct'],
-            'total': stats['total']
-        })
-    
     # Очищаем сессию
     session.pop('test_started', None)
     session.pop('test_questions', None)
@@ -198,7 +165,6 @@ def test_results():
                          correct=correct,
                          percentage=percentage,
                          is_failed=is_failed,
-                         subject_stats=formatted_stats,
                          answers=answers,
                          questions=questions,
                          finished_early=finished_early,
