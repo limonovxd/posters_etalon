@@ -1,4 +1,3 @@
-
 /* Test Progress */
 .test-progress {
     width: 100%;
@@ -113,109 +112,59 @@
     flex: 1;
 }
 
+/* Question Actions */
 .question-actions {
-    text-align: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-/* Responsive for Test Question Styles */
+/* Единый стиль для кнопок в блоке действий */
+.question-actions button,
+.question-actions .menu-btn,
+.question-actions .finish-early-btn {
+    flex: 1 1 auto;
+    min-width: 200px;
+    min-height: 56px;
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 12px;
+    border: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Адаптация для планшетов */
 @media (max-width: 768px) {
-    .test-question-card {
-        padding: 30px 20px;
-    }
-    
-    .question-text {
-        font-size: 24px;
-    }
-    
-    .option-item {
-        padding: 16px;
-    }
-    
-    .option-text {
+    .question-actions button,
+    .question-actions .menu-btn,
+    .question-actions .finish-early-btn {
+        min-height: 48px;
+        padding: 12px 20px;
         font-size: 16px;
-    }
-    
-    .question-subject {
-        font-size: 12px;
-        padding: 6px 12px;
+        border-radius: 10px;
     }
 }
 
+/* Мобильные устройства (до 480px) – кнопки вертикально, во всю ширину */
 @media (max-width: 480px) {
-    .test-question-card {
-        padding: 20px 15px;
+    .question-actions {
+        flex-direction: column;
+        gap: 10px;
     }
-    
-    .question-text {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .option-item {
-        padding: 14px;
-        margin-bottom: 12px;
-    }
-    
-    .option-text {
+    .question-actions button,
+    .question-actions .menu-btn,
+    .question-actions .finish-early-btn {
+        width: 100%;
+        flex: none;
+        min-width: auto;
+        min-height: 44px;
+        padding: 10px 16px;
         font-size: 15px;
-    }
-    
-    .question-subject {
-        font-size: 11px;
-        padding: 6px 12px;
-        margin-bottom: 20px;
-    }
-    
-    .options-list {
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 360px) {
-    .test-question-card {
-        padding: 15px 12px;
-    }
-    
-    .question-text {
-        font-size: 18px;
-        margin-bottom: 18px;
-    }
-    
-    .option-item {
-        padding: 12px;
-    }
-    
-    .option-text {
-        font-size: 14px;
-    }
-    
-    .question-subject {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-}
-
-/* Mobile portrait orientation */
-@media (max-width: 768px) and (orientation: portrait) {
-    .test-question-card {
-        padding: 25px 15px;
-    }
-    
-    .question-text {
-        font-size: 22px;
-        margin-bottom: 25px;
-    }
-    
-    .options-list {
-        gap: 12px;
-        margin-bottom: 30px;
-    }
-    
-    .option-item {
-        padding: 18px 15px;
-    }
-    
-    .option-text {
-        font-size: 17px;
+        border-radius: 8px;
     }
 }

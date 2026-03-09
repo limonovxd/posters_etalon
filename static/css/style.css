@@ -134,8 +134,8 @@ body {
     width: 100%;
     text-align: center;
     justify-content: center;
-    background-color: #f44336 !important;
-    color: white !important;
+    background-color: #f44336;
+    color: white;
     border: none;
     padding: 20px 30px;
     font-size: 24px;
@@ -143,16 +143,54 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .finish-early-btn:hover {
-    background-color: #d32f2f !important;
+    background-color: #d32f2f;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
 }
 
 .finish-early-btn:active {
     transform: translateY(0);
+}
+
+/* Responsive for finish-early-btn - same as menu-btn */
+@media (max-width: 768px) and (orientation: portrait) {
+    .finish-early-btn {
+        font-size: 20px;
+        padding: 18px 25px;
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .finish-early-btn {
+        font-size: 18px;
+        padding: 16px 20px;
+        min-height: 52px;
+        letter-spacing: 0.5px;
+    }
+}
+
+@media (max-width: 320px) {
+    .finish-early-btn {
+        font-size: 15px;
+        padding: 12px 16px;
+        min-height: 44px;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .finish-early-btn {
+        font-size: 28px;
+        padding: 24px 36px;
+    }
 }
 
 /* Modal Styles */

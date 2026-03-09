@@ -86,7 +86,7 @@
                     Следующий вопрос
                     {% endif %}
                 </button>
-                <button type="button" class="back-btn finish-early-btn" onclick="showFinishModal()">
+                <button type="button" class="finish-early-btn" onclick="showFinishModal()">
                     Завершить тест досрочно
                 </button>
             </div>
@@ -97,3 +97,4 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/test_question.js') }}"></script>
 {% endblock %}
+
